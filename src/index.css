@@ -11,7 +11,8 @@
   --color-secondary-icon: var(--color-pri-text);
   --color-spinner: #75826e;
   --color-btn: #3f27c7;
-  --color-pnl-y :var(--color-yellow-300);
+  --color-pnl-y: var(--color-yellow-300);
+  --color-pnl-g: var(--color-green-300);
 
   --color-tag-blue-100: #e0f2fe;
   --color-tag-blue-700: #0369a1;
@@ -33,7 +34,8 @@
       --color-icon-hover: var(--color-secondary);
       --color-secondary-icon: var(--color-pri-text);
       --color-spinner: #75826e;
-      --color-pnl-y :var(--color-yellow-300);
+      --color-pnl-y: var(--color-yellow-300);
+      --color-pnl-g: var(--color-green-300);
     }
     .dark-mode {
       --color-primary: var(--color-gray-800);
@@ -45,7 +47,8 @@
       --color-icon-hover: var(--color-primary-icon);
       --color-secondary-icon: var(--color-gray-600);
       --color-spinner: #5233ff;
-      --color-pnl-y :var(--color-yellow-600);
+      --color-pnl-y: var(--color-yellow-600);
+      --color-pnl-g :var(--color-green-600);
     }
   }
   button:disabled,

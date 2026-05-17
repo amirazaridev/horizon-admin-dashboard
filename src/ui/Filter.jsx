@@ -23,6 +23,7 @@ function FilterButton({ children, value, field, active }) {
   const [searchParam, setSearchParam] = useSearchParams();
   const handleClick = () => {
     searchParam.set(field, value);
+    if (searchParam.get("page")) searchParam.set("page", 1);
     setSearchParam(searchParam);
   };
   return (

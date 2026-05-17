@@ -23,11 +23,10 @@ function BookingDataBox({ booking }) {
     guest: { fullName: guestName, email, nationalID } = {},
     cabin: { name: cabinName } = {},
   } = booking;
-  console.log(numGuests);
 
   return (
     <section className="bg-primary flex flex-col rounded-md shadow-xs [&>div]:px-8">
-      <div className="bg-btn/75 flex h-11 items-center justify-between rounded-t-md text-lg text-white">
+      <div className="bg-btn/75 flex h-11 items-center justify-between rounded-t-md text-sm text-white md:text-lg">
         <div className="flex items-center gap-x-4 font-semibold">
           <HiOutlineHomeModern className="size-6" />
           <p>
@@ -44,7 +43,7 @@ function BookingDataBox({ booking }) {
           </p>
         </div>
       </div>
-      <div className="pt-2 pb-1">
+      <div className="pt-2 pb-1 text-sm md:text-lg">
         <div className="flex gap-x-3.5 py-2">
           <p className="font-semibold">
             {guestName} {numGuests > 1 ? `+ ${numGuests - 1} guests` : ""}
@@ -70,7 +69,9 @@ function BookingDataBox({ booking }) {
           </span>
           {hasBreakfast ? "Yes" : "No"}
         </div>
-        <section className="my-4 flex justify-between rounded-md bg-pnl-y px-5 py-3 text-gray-600">
+        <section
+          className={`my-4 flex justify-between rounded-md ${isPaid ? "bg-pnl-g" : "bg-pnl-y"} px-5 py-3 text-gray-600`}
+        >
           <div className="flex items-center gap-x-4">
             <span className="flex items-center gap-x-1 font-semibold">
               <HiOutlineCurrencyDollar />
@@ -88,7 +89,7 @@ function BookingDataBox({ booking }) {
             {isPaid ? "Paid" : "Will pay at property"}
           </p>
         </section>
-        <div className="flex justify-end my-2">
+        <div className="my-2 flex justify-end">
           <p>Booked {format(new Date(createdAt), "EEE, MMM dd yyyy, p")}</p>
         </div>
       </div>

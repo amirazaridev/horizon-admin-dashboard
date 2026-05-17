@@ -25,7 +25,7 @@ export async function deleteOfCabin(cabinId) {
   if (!res.ok) {
     const { message } = res.json();
     console.error(message);
-    throw new Error("اتاق حذف نشد!");
+    throw new Error("The room was not deleted.");
   }
   return true;
 }
