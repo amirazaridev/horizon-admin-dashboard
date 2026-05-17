@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: var(--color-white);
+  --color-secondary: var(--color-gray-50);
+  --color-nav-hover: #75826e;
+  --color-pri-text: var(--color-gray-700);
+  --color-textnav-hover: var(--color-gray-50);
+  --color-primary-icon: var(--color-gray-700);
+  --color-icon-hover: var(--color-secondary);
+  --color-secondary-icon: var(--color-pri-text);
+  --color-spinner: #75826e;
+  --color-btn: #3f27c7;
+  --color-pnl-y :var(--color-yellow-300);
+
+  --color-tag-blue-100: #e0f2fe;
+  --color-tag-blue-700: #0369a1;
+  --color-tag-green-100: #dcfce7;
+  --color-tag-green-700: #15803d;
+  --color-tag-silver-100: #e5e7eb;
+  --color-tag-silver-700: #374151;
+}
+@layer base {
+  :root {
+    .light-mode,
+    & {
+      --color-primary: var(--color-white);
+      --color-secondary: var(--color-gray-50);
+      --color-nav-hover: #75826e;
+      --color-pri-text: var(--color-gray-700);
+      --color-textnav-hover: var(--color-gray-50);
+      --color-primary-icon: var(--color-gray-700);
+      --color-icon-hover: var(--color-secondary);
+      --color-secondary-icon: var(--color-pri-text);
+      --color-spinner: #75826e;
+      --color-pnl-y :var(--color-yellow-300);
+    }
+    .dark-mode {
+      --color-primary: var(--color-gray-800);
+      --color-secondary: var(--color-gray-900);
+      --color-nav-hover: #160f3d;
+      --color-pri-text: var(--color-white);
+      --color-textnav-hover: var(--color-gray-50);
+      --color-primary-icon: #3f27c7;
+      --color-icon-hover: var(--color-primary-icon);
+      --color-secondary-icon: var(--color-gray-600);
+      --color-spinner: #5233ff;
+      --color-pnl-y :var(--color-yellow-600);
+    }
+  }
+  button:disabled,
+  input:disabled {
+    @apply opacity-40;
+  }
+}
+@layer components {
+  nav .active {
+    @apply bg-nav-hover text-textnav-hover!;
+    .icon-elem {
+      @apply text-icon-hover!;
+    }
+  }
+  @keyframes rotate {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+  .spinner {
+    margin: 4.8rem auto;
+    width: 6.4rem;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    background:
+      radial-gradient(farthest-side, var(--color-spinner) 94%, #0000) top/10px
+        10px no-repeat,
+      conic-gradient(#0000 30%, var(--color-spinner));
+    -webkit-mask: radial-gradient(
+      farthest-side,
+      #0000 calc(100% - 10px),
+      #000 0
+    );
+    animation: rotate 1.5s infinite linear;
+  }
+}
+@layer utilities {
+  .bg-tag-blue-700 {
+    @apply bg-tag-blue-700;
+  }
+  .text-tag-blue-100 {
+    @apply text-tag-blue-100;
+  }
+  .bg-tag-green-700 {
+    @apply bg-tag-green-700;
+  }
+  .text-tag-green-100 {
+    @apply text-tag-green-100;
+  }
+  .bg-tag-silver-700 {
+    @apply bg-tag-silver-700;
+  }
+  .text-tag-silver-100 {
+    @apply text-tag-silver-100;
+  }
+}
