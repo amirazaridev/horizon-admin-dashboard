@@ -7,13 +7,14 @@ import Applayout from "./ui/AppLayout";
 import PageNotFound from "./pages/PageNotFound";
 import Login from "./pages/Login";
 import Bookings from "./pages/Bookings";
-import Booking from './pages/Booking';
+import Booking from "./pages/Booking";
 import Cabins from "./pages/Cabins";
 import Settings from "./pages/Settings";
 import Users from "./pages/Users";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { Toaster } from "react-hot-toast";
 import Checkin from "./pages/Checkin";
+import ProtectedRoute from "./ui/ProtectedRoute";
 
 function App() {
   const queryClient = new QueryClient({
@@ -27,7 +28,13 @@ function App() {
           <Routes>
             <Route index element={<Navigate to="dashboard" replace />} />
 
-            <Route element={<Applayout />}>
+            <Route
+              element={
+                <ProtectedRoute>
+                  <Applayout />
+                </ProtectedRoute>
+              }
+            >
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="bookings" element={<Bookings />} />
               <Route path="bookings/:bookingId" element={<Booking />} />

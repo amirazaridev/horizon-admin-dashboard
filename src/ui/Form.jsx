@@ -8,20 +8,30 @@ function Form({ onSubmit, children, divide = true }) {
     </form>
   );
 }
-function InputText({ type, id, disabled, register, defValue, onBlur }) {
+function InputText({
+  type,
+  id,
+  disabled,
+  register = {},
+  defValue,
+  placeholder,
+  onBlur,
+  w_full = false,
+}) {
   return (
     <input
-      className="focus:ring-btn/30 h-7 w-35 rounded-lg border border-gray-500/50 p-1 outline-none focus:ring sm:w-55 md:h-8.5 md:w-70"
+      className={`focus:ring-btn/30 h-7 ${w_full ? "w-full" : "w-35"} rounded-lg border border-gray-500/50 p-1 outline-none focus:ring sm:w-55 md:h-8.5 md:w-70`}
       type={type}
       id={id}
       disabled={disabled}
       defaultValue={defValue}
       onBlur={onBlur}
+      placeholder={placeholder}
       {...register}
     />
   );
 }
-function Row({ htmlFor, label, error, children, className }) {
+function Row({ htmlFor, label, error, children, className, hasError = true }) {
   return (
     <div
       className={`flex items-center gap-x-5 py-2 text-sm sm:gap-x-10 md:py-3.5 md:text-base ${className}`}
@@ -30,7 +40,7 @@ function Row({ htmlFor, label, error, children, className }) {
         {label}
       </label>
       {children}
-      <p className="w-24 text-red-600 sm:w-35 md:w-41">{error}</p>
+      {hasError && <p className="w-24 text-red-600 sm:w-35 md:w-41">{error}</p>}
     </div>
   );
 }
@@ -44,7 +54,7 @@ function TextArea({ id, register, disabled }) {
     ></textarea>
   );
 }
-function InputImg({ id, register, disabled }) {
+function InputImg({ id, register = {}, disabled }) {
   return (
     <input
       className="file:bg-btn file:hover:bg-btn/85 w-35 file:cursor-pointer file:rounded-md file:p-1.5 file:text-white file:transition-colors sm:w-55"

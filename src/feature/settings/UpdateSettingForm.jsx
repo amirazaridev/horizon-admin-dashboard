@@ -16,6 +16,7 @@ function UpdateSettingForm() {
   const { editSetting, isUpdating } = useUpdateSettings();
 
   if (isLoading) return <Spinner />;
+  
 
   const handleUpdate = (e, name) => {
     editSetting({[name]:e.target.value});
