@@ -48,7 +48,7 @@
       --color-secondary-icon: var(--color-gray-600);
       --color-spinner: #5233ff;
       --color-pnl-y: var(--color-yellow-600);
-      --color-pnl-g :var(--color-green-600);
+      --color-pnl-g: var(--color-green-600);
     }
   }
   button:disabled,
@@ -83,6 +83,12 @@
       #000 0
     );
     animation: rotate 1.5s infinite linear;
+  }
+  .chart {
+    & .recharts-cartesian-grid-horizontal line,
+    & .recharts-cartesian-grid-vertical line {
+      stroke: var(--color-grey-300);
+    }
   }
 }
 @layer utilities {

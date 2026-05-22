@@ -10,6 +10,7 @@ import CheckoutButton from "../check-in-out/CheckoutButton";
 import Modal from "../../ui/Modal";
 import ConfirmDelete from "../../ui/ConfirmDelete";
 import { useDeleteBooking } from "./useDeleteBooking";
+import Empty from "../../ui/Empty";
 
 function BookingDetail() {
   const { booking, isLoading } = useBooking();
@@ -17,6 +18,7 @@ function BookingDetail() {
   const navigate = useNavigate();
 
   if (isLoading) return <Spinner />;
+  if(!booking) return <Empty resourceName='bookings' />
 
   const { status, id } = booking;
   const statusToTagName = {

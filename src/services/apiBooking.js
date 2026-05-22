@@ -1,3 +1,4 @@
+import { getToday } from "../utils/helpers";
 import { API_URL } from "./apiConstants";
 
 export async function getBookings(query = "") {
@@ -52,4 +53,36 @@ export async function deleteBooking(id) {
     throw new Error("The booking was not deleted.");
   }
   return true;
+}
+export async function getBookingAfterDate(date) {
+  const res = await fetch(
+    `${API_URL}/api/v1/bookings/recentdate?field=createdAt&today=${getToday({ end: true })}&date=${date}`,
+  );
+  const { data, message } = await res.json();
+
+  if (!res.ok) {
+    throw new Error(message);
+  }
+
+  return data.bookings;
+}
+export async function getStaysAfterDate(date) {
+  const res = await fetch(
+    `${API_URL}/api/v1/bookings/recentdate?field=startDate&today=${getToday({ end: true })}&date=${date}`,
+  );
+  const { data, message } = await res.json();
+
+  if (!res.ok) {
+    throw new Error(message);
+  }
+
+  return data.bookings;
+}
+export async function getStaysTodayActivity() {
+  const res = await fetch(`${API_URL}/api/v1/bookings/todaydata`);
+  const { data, message } = await res.json();
+
+  if (!res.ok) throw new Error(message);
+
+  return data.bookings;
 }

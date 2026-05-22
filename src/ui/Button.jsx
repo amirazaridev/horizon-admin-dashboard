@@ -22,8 +22,8 @@ function Button({
     return (
       <button
         type={typeBtn}
-        className={`${className[type]} flex items-center justify-center gap-x-2 p-2`}
-        onClick={() => navigate(-1)}
+        className={`${className[type]} flex items-center justify-center gap-x-2 `}
+        onClick={() => (!onClick ? navigate(-1) : onClick())}
       >
         {children}
       </button>
