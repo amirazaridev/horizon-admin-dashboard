@@ -23,7 +23,7 @@ function BookingDataBox({ booking }) {
     guest: { fullName: guestName, email, nationalID } = {},
     cabin: { name: cabinName } = {},
   } = booking;
-
+  
   return (
     <section className="bg-primary flex flex-col rounded-md shadow-xs [&>div]:px-8">
       <div className="bg-btn/75 flex h-11 items-center justify-between rounded-t-md text-sm text-white md:text-lg">

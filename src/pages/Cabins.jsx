@@ -8,9 +8,8 @@ import TitleContainer from "../ui/TitleContainer";
 function Cabins() {
   return (
     <Container>
-      <TitleContainer className="mb-10 flex justify-between">
+      <TitleContainer>
         <Heading as="h2">All Cabins</Heading>
-        {/* <span>Filter / Sort</span> */}
         <CabinTableOperations />
       </TitleContainer>
       <CabinTable />

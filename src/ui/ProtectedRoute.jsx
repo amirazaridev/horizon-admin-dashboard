@@ -5,12 +5,13 @@ import Spinner from "./Spinner";
 import { useNavigate } from "react-router";
 
 function ProtectedRoute({ children }) {
-  const { user = { user: "" }, isLoading } = useUser();
+  const { user = { user: null }, isLoading, refetch } = useUser();
   const navigate = useNavigate();
 
   useEffect(() => {
+    refetch();
     if (!user && !isLoading) navigate("/login");
-  }, [user, navigate, isLoading]);
+  }, [user, navigate, isLoading, refetch]);
 
   if (isLoading)
     return (

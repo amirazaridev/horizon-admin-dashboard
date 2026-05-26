@@ -14,6 +14,7 @@ import Empty from "../../ui/Empty";
 
 function BookingDetail() {
   const { booking, isLoading } = useBooking();
+  
   const { deleteBooking, isDeleting } = useDeleteBooking();
   const navigate = useNavigate();
 
