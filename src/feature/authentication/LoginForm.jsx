@@ -5,6 +5,7 @@ import useLogin from "./useLogin";
 import useUser from "./useUser";
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
+import Logo from "../../ui/Logo";
 
 function LoginForm() {
   const navigate = useNavigate();
@@ -25,10 +26,13 @@ function LoginForm() {
   };
 
   return (
-    <div className="bg-secondary text-pri-text placeholder:text-pri-text flex h-screen w-full items-center justify-center overflow-hidden">
+    <div className="bg-secondary text-pri-text placeholder:text-pri-text flex h-screen w-full flex-col items-center justify-center overflow-hidden">
+      <div className="w-80 h-50">
+        <Logo className="size-full scale-100 object-cover" />
+      </div>
       <form
         onSubmit={handleSubmit(onSubmit)}
-        className="bg-primary flex h-80 w-95 flex-col items-center gap-y-5.5 rounded-md px-13 py-6 shadow-xs"
+        className="bg-primary flex max-h-80 w-95 flex-col items-center gap-y-5.5 rounded-md px-13 py-8 shadow-xs"
       >
         <div className="flex w-full flex-col gap-y-2">
           <label>Email address</label>

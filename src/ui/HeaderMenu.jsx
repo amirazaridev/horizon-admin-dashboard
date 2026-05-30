@@ -8,8 +8,8 @@ function HeaderMenu() {
   return (
     <ul className="flex gap-x-3 pt-1">
       <li>
-        <ButtonIcon>
-          <HiOutlineUser className="" />
+        <ButtonIcon active={true}>
+          <HiOutlineUser />
         </ButtonIcon>
       </li>
       <li>

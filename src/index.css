@@ -63,6 +63,9 @@
       @apply text-icon-hover!;
     }
   }
+  .header-item.active {
+    
+  }
   @keyframes rotate {
     to {
       transform: rotate(1turn);

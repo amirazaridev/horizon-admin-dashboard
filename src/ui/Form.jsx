@@ -9,7 +9,7 @@ function Form({ onSubmit, children, divide = true }) {
   );
 }
 function InputText({
-  type,
+  type = "text",
   id,
   disabled,
   register = {},

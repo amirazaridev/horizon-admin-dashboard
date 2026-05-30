@@ -48,7 +48,7 @@ export default function Sidebar() {
     >
       {/* Header */}
       <div
-        className={`mb-4 flex h-auto flex-col items-center gap-y-8 ${expanded ? "justify-between" : "justify-center"} p-4 py-6`}
+        className={`mb-4 flex h-auto flex-col items-center gap-y-12 ${expanded ? "justify-between" : "justify-center"} p-4 py-6`}
       >
         <button
           onClick={() => setExpanded(!expanded)}
@@ -61,7 +61,7 @@ export default function Sidebar() {
           )}
         </button>
         <Logo
-          className={`cursor-pointer transition-all duration-400 ${expanded ? "h-32 w-38 opacity-100" : "mt-9 h-16 w-full"} `}
+          className={`cursor-pointer scale-130 mt-7 transition-all duration-400 ${expanded ? "h-32 w-38 opacity-100" : "mt-9 h-16 w-full"} `}
         />
       </div>
 
