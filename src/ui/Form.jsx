@@ -2,18 +2,27 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
+// ! Colors  bnt===primary
+
 function Form({ onSubmit, children, divide = true }) {
   return (
     <form
-      className={`text-pri-text flex min-w-90 flex-col ${divide ? "divide-y divide-gray-400/15" : ""} px-2 pt-2 pb-4 sm:min-w-130 md:min-w-180`}
+      className={`text-text flex min-w-90 flex-col ${divide ? "divide-y divide-gray-400/15" : ""} px-2 pt-2 pb-4 sm:min-w-130 md:min-w-180`}
       onSubmit={onSubmit}
     >
       {children}
     </form>
   );
 }
-function CheckboxInp({id}) {
-  return <input className="accent-btn size-5" type="checkbox" id={id} />;
+function CheckboxInp({ id, disabled = false }) {
+  return (
+    <input
+      className="accent-btn size-5"
+      type="checkbox"
+      id={id}
+      disabled={disabled}
+    />
+  );
 }
 function InputText({
   type = "text",
@@ -47,7 +56,8 @@ function InputTextWithIcon({
   defValue,
   placeholder,
   onBlur,
-  w_full = false,
+  hasError,
+  autoComplete
 }) {
   const {
     i18n: { language },
@@ -60,7 +70,7 @@ function InputTextWithIcon({
     >
       {icon}
       <input
-        className="bg-surface border-border text-text placeholder:text-text-faint focus:border-btn focus:shadow-input focus:bg-surface-2 w-full rounded-xl border py-3 ps-10 pe-3.5 text-base transition-all outline-none"
+        className={`bg-surface border-border text-text placeholder:text-text-faint ${hasError ? "focus:shadow-input-error border-red-600" : "focus:border-btn focus:shadow-input"} focus:bg-surface-2 w-full rounded-xl border py-3 ps-10 pe-3.5 text-base transition-all outline-none`}
         type={type}
         maxLength={150}
         disabled={disabled}
@@ -68,6 +78,7 @@ function InputTextWithIcon({
         defaultValue={defValue}
         placeholder={placeholder}
         onBlur={onBlur}
+        autoComplete={autoComplete}
         {...register}
       />
     </div>
@@ -75,11 +86,13 @@ function InputTextWithIcon({
 }
 function InputPassWithIcon({
   icon,
-  disabled,
+  disabled = false,
   id,
   defValue,
   placeholder,
   register = {},
+  hasError,
+  autoComplete
 }) {
   const {
     i18n: { language },
@@ -94,35 +107,35 @@ function InputPassWithIcon({
     >
       {icon}
       <input
-        className="bg-surface border-border text-text placeholder:text-text-faint focus:border-btn focus:shadow-input focus:bg-surface-2 w-full rounded-xl border py-3 ps-10 pe-10 text-base transition-all outline-none"
+        className={`bg-surface border-border text-text placeholder:text-text-faint ${hasError ? "focus:shadow-input-error border-red-600" : "focus:border-btn focus:shadow-input"} focus:bg-surface-2 w-full rounded-xl border py-3 ps-10 pe-3.5 text-base transition-all outline-none`}
         type={showPassword ? "text" : "password"}
         disabled={disabled}
         maxLength={150}
         id={id}
         defaultValue={defValue}
         placeholder={placeholder}
+        autoComplete={autoComplete}
         {...register}
       />
       <button
         type="button"
         className={`absolute top-1/2 -translate-1/2 [&>svg]:size-6 ${current === "fa" ? "end-6" : "end-0"}`}
         onClick={() => setShowPassword((sp) => !sp)}
+        disabled={disabled}
       >
         {showPassword ? <FaEyeSlash /> : <FaEye />}
       </button>
     </div>
   );
 }
-function Row({ htmlFor, label, error, children, className, hasError = true }) {
+function Row({ htmlFor, label, error, children, className = "" }) {
   return (
-    <div
-      className={`flex items-center gap-x-5 py-2 text-sm sm:gap-x-10 md:py-3.5 md:text-base ${className}`}
-    >
-      <label className="w-21 sm:w-40 md:w-50" htmlFor={htmlFor}>
+    <div className={`flex w-full flex-col gap-y-2 ${className}`}>
+      <label className="font-semibold" htmlFor={htmlFor}>
         {label}
       </label>
       {children}
-      {hasError && <p className="w-24 text-red-600 sm:w-35 md:w-41">{error}</p>}
+      {error && <p className="text-sm text-red-600">{error}</p>}
     </div>
   );
 }

@@ -1,9 +1,10 @@
 import { useTranslation } from "react-i18next";
-import Logo from "../../ui/Logo";
-import LabeledIcon from "../../ui/LabeledIcon";
 import { FaChartLine } from "react-icons/fa";
 import { LuDollarSign } from "react-icons/lu";
 import { IoShieldOutline } from "react-icons/io5";
+
+import LabeledIcon from "../../ui/LabeledIcon";
+import Logo from "../../ui/Logo";
 
 function BrandPanel() {
   const { t } = useTranslation();

@@ -64,6 +64,7 @@
 
   --shadow-card: 0 30px 80px -30px rgba(0, 0, 0, 0.55);
   --shadow-input: 0 0 0 4px rgba(63, 39, 199, 0.14);
+  --shadow-input-error:0 0 0 4px rgba(220, 38, 38, 0.14);
 }
 
 @layer base {
