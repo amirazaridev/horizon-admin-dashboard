@@ -32,6 +32,7 @@ export async function updateBooking(id, booking) {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(booking),
+    credentials: "include",
   });
   const { data, message } = await res.json();
 
@@ -45,6 +46,7 @@ export async function updateBooking(id, booking) {
 export async function deleteBooking(id) {
   const res = await fetch(`${API_URL}/api/v1/bookings/${id}`, {
     method: "DELETE",
+    credentials: "include",
   });
 
   if (!res.ok) {

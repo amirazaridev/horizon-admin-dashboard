@@ -1,85 +1,141 @@
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
-  HiDotsHorizontal,
   HiOutlineCog,
   HiOutlineFolderOpen,
   HiOutlineHome,
   HiOutlineOfficeBuilding,
   HiOutlineUsers,
 } from "react-icons/hi";
+import { FaBars, FaXmark } from "react-icons/fa6";
 import Logo from "./Logo";
 import SidebarItem from "./SidebarItem";
-import { FaXmark } from "react-icons/fa6";
-import Uploader from "../data/Uploader";
 
-const navItems = [
-  {
-    title: "Home",
-    icon: HiOutlineHome,
-    path: "dashboard",
-  },
-  {
-    title: "Bookings",
-    icon: HiOutlineFolderOpen,
-    path: "bookings",
-  },
-  {
-    title: "Cabins",
-    icon: HiOutlineOfficeBuilding,
-    path: "cabins",
-  },
-  {
-    title: "Users",
-    icon: HiOutlineUsers,
-    path: "users",
-  },
-  {
-    title: "Settings",
-    icon: HiOutlineCog,
-    path: "settings",
-  },
-];
 export default function Sidebar() {
-  const [expanded, setExpanded] = useState(false);
+  const { t } = useTranslation();
+  const [collapsed, setCollapsed] = useState(false);
+
+  const mainNav = [
+    { title: t("nav.dashboard"), icon: HiOutlineHome, path: "dashboard" },
+    {
+      title: t("nav.bookings"),
+      icon: HiOutlineFolderOpen,
+      path: "bookings",
+      badge: { text: t("common.add"), tone: "green" },
+    },
+    {
+      title: t("nav.cabins"),
+      icon: HiOutlineOfficeBuilding,
+      path: "cabins",
+    },
+  ];
+
+  const mgmtNav = [
+    { title: t("nav.users"), icon: HiOutlineUsers, path: "users" },
+    { title: t("nav.settings"), icon: HiOutlineCog, path: "settings" },
+  ];
 
   return (
     <aside
-      className={`bg-primary sticky top-0 h-screen shrink-0 border-gray-200 shadow-sm transition-all duration-500 ease-in-out ${expanded ? "w-48 sm:w-64" : "w-15 sm:w-22"} `}
+      className="border-border bg-surface sticky top-0 flex h-screen shrink-0 flex-col border-e transition-all duration-300 ease-in-out"
+      style={{
+        width: collapsed ? "84px" : "264px",
+      }}
     >
-      {/* Header */}
+      {/* Brand + collapse toggle */}
       <div
-        className={`mb-4 flex h-auto flex-col items-center gap-y-12 ${expanded ? "justify-between" : "justify-center"} p-4 py-6`}
+        className={`flex min-h-19 items-center gap-3 px-5 py-5 ${
+          collapsed ? "justify-center" : "justify-between"
+        }`}
       >
-        <button
-          onClick={() => setExpanded(!expanded)}
-          className="hover:text-nav-hover absolute top-1 cursor-pointer self-start text-gray-600"
-        >
-          {expanded ? (
-            <FaXmark className="size-8" />
-          ) : (
-            <HiDotsHorizontal className="size-8 w-8 sm:size-10 sm:w-13" />
-          )}
-        </button>
-        <Logo
-          className={`cursor-pointer scale-130 mt-7 transition-all duration-400 ${expanded ? "h-32 w-38 opacity-100" : "mt-9 h-16 w-full"} `}
-        />
+        {collapsed && <Logo collapsed />}
+        {!collapsed && (
+          <>
+            <Logo />
+            <button
+              onClick={() => setCollapsed(true)}
+              className="border-border text-text-muted hover:text-text grid size-9 shrink-0 cursor-pointer place-items-center rounded-lg border transition"
+              aria-label="collapse"
+            >
+              <FaXmark className="size-4" />
+            </button>
+          </>
+        )}
       </div>
 
       {/* Navigation */}
-      <nav
-        className={`mt-6 flex flex-col items-center space-y-1 ${expanded ? "px-6" : "px-2"}`}
-      >
-        {navItems.map((item) => (
-          <SidebarItem
-            key={crypto.randomUUID()}
-            icon={item.icon}
-            path={item.path}
-            expanded={expanded}
+      <nav className="flex-1 overflow-y-auto px-3.5 pb-2">
+        {/* expand button when collapsed */}
+        {collapsed && (
+          <button
+            onClick={() => setCollapsed(false)}
+            className="border-border text-text-muted hover:text-text mx-auto mb-3 grid size-11 w-full cursor-pointer place-items-center rounded-[11px] border transition"
+            aria-label="expand"
           >
-            {item.title}
-          </SidebarItem>
-        ))}
+            <FaBars className="size-4" />
+          </button>
+        )}
+
+        <NavSection title={collapsed ? null : t("nav.main")} />
+        <ul className="space-y-0.5">
+          {mainNav.map((item) => (
+            <li key={item.path + item.title}>
+              <SidebarItem
+                icon={item.icon}
+                path={item.path}
+                collapsed={collapsed}
+                badge={item.badge}
+              >
+                {item.title}
+              </SidebarItem>
+            </li>
+          ))}
+        </ul>
+
+        <NavSection title={collapsed ? null : t("nav.management")} />
+        <ul className="space-y-0.5">
+          {mgmtNav.map((item) => (
+            <li key={item.path + item.title}>
+              <SidebarItem
+                icon={item.icon}
+                path={item.path}
+                collapsed={collapsed}
+              >
+                {item.title}
+              </SidebarItem>
+            </li>
+          ))}
+        </ul>
       </nav>
+
+      
+
+      {/* User footer */}
+      <div className="border-border flex items-center gap-3 border-t px-3.5 py-3">
+        <div
+          className="size-9 shrink-0 rounded-[10px] bg-cover bg-center"
+          style={{
+            backgroundImage: "linear-gradient(135deg,#6366f1,#a78bfa)",
+          }}
+        />
+        {!collapsed && (
+          <div className="leading-tight">
+            <b className="block text-[13.5px] font-bold">{t("brand.name")}</b>
+            <small className="text-text-muted text-[11.5px]">
+              {t("users.owner")}
+            </small>
+          </div>
+        )}
+      </div>
     </aside>
+  );
+}
+
+function NavSection({ title }) {
+  if (!title) return <div className="h-3" />;
+  return (
+    <h3 className="text-text-faint px-3 pt-4 pb-2 text-[11px] font-bold tracking-[0.08em] uppercase">
+      {title}
+    </h3>
   );
 }

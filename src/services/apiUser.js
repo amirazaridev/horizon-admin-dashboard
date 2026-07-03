@@ -38,10 +38,8 @@ export async function insertUser(user) {
 
   return data.user;
 }
-export async function updateUser(user, id) {
-  console.log(user);
-
-  const res = await fetch(`${API_URL}/api/v1/users/${id}`, {
+export async function updateUser(user) {
+  const res = await fetch(`${API_URL}/api/v1/users/me`, {
     method: "PATCH",
     credentials: "include",
     headers: { "Content-Type": "application/json" },

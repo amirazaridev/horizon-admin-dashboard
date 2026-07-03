@@ -6,7 +6,7 @@ import { updateUser as updateUserApi } from "../../services/apiUser";
 export function useUpdateUser() {
   const queryClient = useQueryClient();
   const { mutate: updateUser, isPending: isUpdating } = useMutation({
-    mutationFn: ({ user, id }) => updateUserApi(user, id),
+    mutationFn: updateUserApi,
     onSuccess: () => {
       toast.success("User successfully updated");
       queryClient.invalidateQueries({ queryKey: ["user"] });

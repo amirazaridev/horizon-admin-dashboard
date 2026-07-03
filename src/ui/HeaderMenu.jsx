@@ -1,24 +1,14 @@
-import { HiOutlineSun, HiOutlineUser } from "react-icons/hi";
-import ButtonIcon from "./ButtonIcon";
-import { HiArrowRightOnRectangle } from "react-icons/hi2";
-import ThemeToggle from "./ThemeToggle";
 import Logout from "../feature/authentication/Logout";
 
+/**
+ * Minimal header menu — renders the Logout action.
+ * ThemeToggle and LanguageSwitcher now live directly in Header.jsx.
+ */
 function HeaderMenu() {
   return (
-    <ul className="flex gap-x-3 pt-1">
-      <li>
-        <ButtonIcon active={true}>
-          <HiOutlineUser />
-        </ButtonIcon>
-      </li>
-      <li>
-        <ThemeToggle />
-      </li>
-      <li>
-        <Logout />
-      </li>
-    </ul>
+    <div className="flex items-center gap-2">
+      <Logout />
+    </div>
   );
 }
 

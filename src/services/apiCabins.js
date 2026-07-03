@@ -20,7 +20,10 @@ export async function getCabins() {
   return data?.cabins;
 }
 export async function deleteOfCabin(cabinId) {
-  const res = await fetch(`${cabinAPI}/${cabinId}`, { method: "DELETE" });
+  const res = await fetch(`${cabinAPI}/${cabinId}`, {
+    method: "DELETE",
+    credentials: "include",
+  });
 
   if (!res.ok) {
     const { message } = res.json();
@@ -36,6 +39,7 @@ export async function insertCabin(cabin, id) {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ ...cabin, image: imagePath }),
+    credentials: "include",
   });
   const { data, message } = await res.json();
 
@@ -52,6 +56,7 @@ export async function updateCabin(cabin, id) {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ ...cabin, image: imagePath }),
+    credentials: "include",
   });
   const { data, message } = await res.json();
 

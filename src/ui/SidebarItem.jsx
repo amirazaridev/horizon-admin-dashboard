@@ -1,20 +1,59 @@
 import { NavLink } from "react-router";
 
-function SidebarItem({ children, icon: Icon, expanded, path }) {
+/**
+ * Modern sidebar nav item.
+ * - Active state uses the brand-tinted gradient + an indicator bar on the start side.
+ * - `badge` (optional) renders a pill at the end (e.g. unread counts).
+ * - When `collapsed` the label/badge are hidden; only the icon shows (centered).
+ * - Fully RTL-aware via logical properties (ps-/pe-) and `rtl:` variants.
+ */
+function SidebarItem({ children, icon: Icon, collapsed, path, badge }) {
   return (
     <NavLink
       to={path}
-      className={`hover:bg-nav-hover text-pri-text hover:text-textnav-hover group flex w-full items-center ${expanded ? "justify-start gap-x-3" : "justify-center"} h-13 gap-4 rounded-lg px-4 py-2 text-gray-700 transition`}
+      className={({ isActive }) =>
+        `group relative flex h-11 w-full items-center gap-3 rounded-[11px] px-3 text-[14.5px] font-medium transition-all duration-200 ${
+          collapsed ? "justify-center" : "justify-start"
+        } ${
+          isActive
+            ? "text-color-btn"
+            : "text-text-muted hover:bg-card-2 hover:text-text"
+        }`
+      }
     >
-      <span className="icon-elem text-secondary-icon group-hover:text-primary-icon! shrink-0 hover:text-inherit">
-        <Icon className="size-7" />
-      </span>
+      {({ isActive }) => (
+        <>
+          {isActive && (
+            <span className="bg-btn absolute -start-2 top-1/2 h-5.5 w-1 -translate-y-1/2 rounded-full" />
+          )}
+          <span
+            className={`shrink-0 transition-colors ${
+              isActive
+                ? "text-color-btn"
+                : "text-text-muted group-hover:text-text"
+            }`}
+          >
+            <Icon className="size-5.25" strokeWidth={1.9} />
+          </span>
 
-      <span
-        className={`text-lg font-medium transition-opacity duration-300 ${expanded ? "translate-x-0 opacity-100" : "pointer-events-none hidden -translate-x-4 opacity-0"} `}
-      >
-        {children}
-      </span>
+          {!collapsed && (
+            <>
+              <span className="whitespace-nowrap">{children}</span>
+              {badge && (
+                <span
+                  className={`ms-auto rounded-full px-2 py-0.5 text-[11px] font-bold ${
+                    badge.tone === "green"
+                      ? "bg-green text-white"
+                      : "bg-btn text-white"
+                  }`}
+                >
+                  {badge.text}
+                </span>
+              )}
+            </>
+          )}
+        </>
+      )}
     </NavLink>
   );
 }

@@ -24,7 +24,7 @@ function App() {
   return (
     <ThemeProvider>
       <QueryClientProvider client={queryClient}>
-        <ReactQueryDevtools initialIsOpen={false} />
+        {/* <ReactQueryDevtools initialIsOpen={false} /> */}
         <BrowserRouter>
           <Routes>
             <Route index element={<Navigate to="dashboard" replace />} />

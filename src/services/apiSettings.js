@@ -16,6 +16,7 @@ export async function updateSetting(newSetting) {
     method: "PATCH",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(newSetting),
+    credentials: "include",
   });
   const { data, message } = await res.json();
 

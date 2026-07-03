@@ -17,16 +17,15 @@ function UpdateUserDataForm() {
   const isWorking = isUpdating || isLoading;
 
   const onSubmit = (data) => {
-    console.log(data);
-
-    updateUser({ user: data, id: user.id });
+    updateUser(data);
   };
 
   return (
     <div className="bg-primary my-4 rounded-md px-8 py-2 shadow-xs">
       <Form divide={false} onSubmit={handleSubmit(onSubmit)}>
         <Form.Row label="Email address" error={errors?.email?.message}>
-          <Form.InputText type="email"
+          <Form.InputText
+            type="email"
             register={register("email", {
               required: "Email address is required.",
               pattern: {

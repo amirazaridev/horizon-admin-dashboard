@@ -1,7 +1,7 @@
 import { API_URL } from "./apiConstants";
 
 export async function login(user) {
-  const res = await fetch(`${API_URL}/api/v1/users/login_admin`, {
+  const res = await fetch(`${API_URL}/api/v1/users/admin/login`, {
     credentials: "include",
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -14,7 +14,7 @@ export async function login(user) {
   return data;
 }
 export async function getUser() {
-  const res = await fetch(`${API_URL}/api/v1/users/login`, {
+  const res = await fetch(`${API_URL}/api/v1/users/me`, {
     credentials: "include",
   });
   const { data, message } = await res.json();

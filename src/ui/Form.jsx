@@ -1,3 +1,7 @@
+import { useState } from "react";
+import { useTranslation } from "react-i18next";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+
 function Form({ onSubmit, children, divide = true }) {
   return (
     <form
@@ -7,6 +11,9 @@ function Form({ onSubmit, children, divide = true }) {
       {children}
     </form>
   );
+}
+function CheckboxInp({id}) {
+  return <input className="accent-btn size-5" type="checkbox" id={id} />;
 }
 function InputText({
   type = "text",
@@ -29,6 +36,81 @@ function InputText({
       placeholder={placeholder}
       {...register}
     />
+  );
+}
+function InputTextWithIcon({
+  icon,
+  type = "text",
+  id,
+  disabled,
+  register = {},
+  defValue,
+  placeholder,
+  onBlur,
+  w_full = false,
+}) {
+  const {
+    i18n: { language },
+  } = useTranslation();
+  const current = language?.startsWith("fa") ? "fa" : "en";
+
+  return (
+    <div
+      className={`[&>svg]:text-text-faint relative [&>svg]:pointer-events-none [&>svg]:absolute ${current === "en" ? "[&>svg]:start-5" : ""} [&>svg]:top-1/2 [&>svg]:size-6 [&>svg]:-translate-1/2`}
+    >
+      {icon}
+      <input
+        className="bg-surface border-border text-text placeholder:text-text-faint focus:border-btn focus:shadow-input focus:bg-surface-2 w-full rounded-xl border py-3 ps-10 pe-3.5 text-base transition-all outline-none"
+        type={type}
+        maxLength={150}
+        disabled={disabled}
+        id={id}
+        defaultValue={defValue}
+        placeholder={placeholder}
+        onBlur={onBlur}
+        {...register}
+      />
+    </div>
+  );
+}
+function InputPassWithIcon({
+  icon,
+  disabled,
+  id,
+  defValue,
+  placeholder,
+  register = {},
+}) {
+  const {
+    i18n: { language },
+  } = useTranslation();
+  const [showPassword, setShowPassword] = useState(false);
+
+  const current = language?.startsWith("fa") ? "fa" : "en";
+
+  return (
+    <div
+      className={`[&>svg]:text-text-faint relative [&>svg]:pointer-events-none [&>svg]:absolute ${current === "en" ? "[&>svg]:start-5" : ""} [&>svg]:top-1/2 [&>svg]:size-6 [&>svg]:-translate-1/2`}
+    >
+      {icon}
+      <input
+        className="bg-surface border-border text-text placeholder:text-text-faint focus:border-btn focus:shadow-input focus:bg-surface-2 w-full rounded-xl border py-3 ps-10 pe-10 text-base transition-all outline-none"
+        type={showPassword ? "text" : "password"}
+        disabled={disabled}
+        maxLength={150}
+        id={id}
+        defaultValue={defValue}
+        placeholder={placeholder}
+        {...register}
+      />
+      <button
+        type="button"
+        className={`absolute top-1/2 -translate-1/2 [&>svg]:size-6 ${current === "fa" ? "end-6" : "end-0"}`}
+        onClick={() => setShowPassword((sp) => !sp)}
+      >
+        {showPassword ? <FaEyeSlash /> : <FaEye />}
+      </button>
+    </div>
   );
 }
 function Row({ htmlFor, label, error, children, className, hasError = true }) {
@@ -71,7 +153,10 @@ function Title({ children }) {
 }
 Form.InputText = InputText;
 Form.Row = Row;
+Form.CheckboxInp = CheckboxInp;
 Form.TextArea = TextArea;
+Form.InputTextWithIcon = InputTextWithIcon;
+Form.InputPassWithIcon = InputPassWithIcon;
 Form.InputImg = InputImg;
 Form.Title = Title;
 
