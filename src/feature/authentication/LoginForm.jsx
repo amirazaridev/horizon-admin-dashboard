@@ -1,19 +1,20 @@
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router";
+
+import { useTranslation } from "react-i18next";
+import { HiOutlineMail } from "react-icons/hi";
+import { TbLockPassword } from "react-icons/tb";
+import { FaArrowRight } from "react-icons/fa";
+
 import Button from "../../ui/Button";
 import Form from "../../ui/Form";
 import useLogin from "./useLogin";
 import useUser from "./useUser";
-import { useEffect } from "react";
-import { Link, useNavigate } from "react-router";
 import Logo from "../../ui/Logo";
 import ThemeToggle from "../../ui/ThemeToggle";
 import LanguageSwitcher from "../../ui/LanguageSwitcher";
-import { useTranslation } from "react-i18next";
-import { HiOutlineMail } from "react-icons/hi";
-import { TbLockPassword } from "react-icons/tb";
-import Spinner from "../../ui/Spinner";
-import { FaArrowRight } from "react-icons/fa";
-import BrandPanel from "../../ui/BrandPanel";
+import BrandPanel from "./BrandPanel";
 
 function LoginForm() {
   const { t } = useTranslation();
