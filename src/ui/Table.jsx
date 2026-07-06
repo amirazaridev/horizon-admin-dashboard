@@ -6,7 +6,7 @@ function Table({ children, columns }) {
     <TableContext value={columns}>
       <section
         role="table"
-        className="bg-primary mx-auto my-4 rounded-sm text-xs shadow-sm sm:text-base"
+        className="bg-card mx-auto my-4 rounded-sm text-xs shadow-sm sm:text-base"
       >
         {children}
       </section>
@@ -29,7 +29,7 @@ function Row({ children }) {
   const columns = useContext(TableContext);
   return (
     <div
-      className="bg-primary grid items-center border border-gray-200/30 p-1"
+      className="bg-card grid items-center border border-gray-200/30 p-1"
       style={{ gridTemplateColumns: columns }}
     >
       {children}

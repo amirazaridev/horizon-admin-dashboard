@@ -2,7 +2,6 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-// ! Colors  bnt===primary
 
 function Form({ onSubmit, children, divide = true }) {
   return (
@@ -17,7 +16,7 @@ function Form({ onSubmit, children, divide = true }) {
 function CheckboxInp({ id, disabled = false }) {
   return (
     <input
-      className="accent-btn size-5"
+      className="accent-primary size-5"
       type="checkbox"
       id={id}
       disabled={disabled}
@@ -36,7 +35,7 @@ function InputText({
 }) {
   return (
     <input
-      className={`focus:ring-btn/30 h-7 ${w_full ? "w-full" : "w-35"} rounded-lg border border-gray-500/50 p-1 outline-none focus:ring sm:w-55 md:h-8.5 md:w-70`}
+      className={`focus:ring-primary/30 h-7 ${w_full ? "w-full" : "w-35"} rounded-lg border border-gray-500/50 p-1 outline-none focus:ring sm:w-55 md:h-8.5 md:w-70`}
       type={type}
       id={id}
       disabled={disabled}
@@ -70,7 +69,7 @@ function InputTextWithIcon({
     >
       {icon}
       <input
-        className={`bg-surface border-border text-text placeholder:text-text-faint ${hasError ? "focus:shadow-input-error border-red-600" : "focus:border-btn focus:shadow-input"} focus:bg-surface-2 w-full rounded-xl border py-3 ps-10 pe-3.5 text-base transition-all outline-none`}
+        className={`bg-surface border-border text-text placeholder:text-text-faint ${hasError ? "focus:shadow-input-error border-red-600" : "focus:border-primary focus:shadow-input"} focus:bg-surface-2 w-full rounded-xl border py-3 ps-10 pe-3.5 text-base transition-all outline-none`}
         type={type}
         maxLength={150}
         disabled={disabled}
@@ -107,7 +106,7 @@ function InputPassWithIcon({
     >
       {icon}
       <input
-        className={`bg-surface border-border text-text placeholder:text-text-faint ${hasError ? "focus:shadow-input-error border-red-600" : "focus:border-btn focus:shadow-input"} focus:bg-surface-2 w-full rounded-xl border py-3 ps-10 pe-3.5 text-base transition-all outline-none`}
+        className={`bg-surface border-border text-text placeholder:text-text-faint ${hasError ? "focus:shadow-input-error border-red-600" : "focus:border-primary focus:shadow-input"} focus:bg-surface-2 w-full rounded-xl border py-3 ps-10 pe-3.5 text-base transition-all outline-none`}
         type={showPassword ? "text" : "password"}
         disabled={disabled}
         maxLength={150}
@@ -142,7 +141,7 @@ function Row({ htmlFor, label, error, children, className = "" }) {
 function TextArea({ id, register, disabled }) {
   return (
     <textarea
-      className="focus:ring-btn/30 h-7 w-35 rounded-lg border border-gray-500/50 p-1 outline-none focus:ring sm:w-55 md:h-8.5 md:w-70"
+      className="focus:ring-primary/30 h-7 w-35 rounded-lg border border-gray-500/50 p-1 outline-none focus:ring sm:w-55 md:h-8.5 md:w-70"
       id={id}
       disabled={disabled}
       {...register}
@@ -152,7 +151,7 @@ function TextArea({ id, register, disabled }) {
 function InputImg({ id, register = {}, disabled }) {
   return (
     <input
-      className="file:bg-btn file:hover:bg-btn/85 w-35 file:cursor-pointer file:rounded-md file:p-1.5 file:text-white file:transition-colors sm:w-55"
+      className="file:bg-primary file:hover:bg-primary/85 w-35 file:cursor-pointer file:rounded-md file:p-1.5 file:text-white file:transition-colors sm:w-55"
       type="file"
       id={id}
       disabled={disabled}

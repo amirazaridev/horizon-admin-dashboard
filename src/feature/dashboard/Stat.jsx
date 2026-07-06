@@ -1,21 +1,29 @@
 function Stat({ title, color, icon, value }) {
-  const colorClass = {
-    blue: "bg-blue-500 text-blue-800",
-    yellow: "bg-yellow-300/50 text-yellow-800",
-    green: "bg-green-300/70 text-green-800",
-    indigo: "bg-indigo-300/50 text-indigo-700",
+  const iconBg = {
+    indigo: "bg-[linear-gradient(135deg,#6366f1,#4f46e5)]",
+    green: "bg-[linear-gradient(135deg,#34d399,#22c55e)]",
+    amber: "bg-[linear-gradient(135deg,#fbbf24,#f59e0b)]",
+    rose: "bg-[linear-gradient(135deg,#fb7185,#f43f5e)]",
   };
+
   return (
-    <div className="bg-primary w-full flex h-15 items-center gap-x-2 rounded-md px-6 shadow-xs">
+    <div className="border-border bg-card flex w-full flex-col gap-3.5 rounded-[18px] p-5 shadow-shadow-soft transition-[transform,border-color] duration-200 hover:-translate-y-0.75 hover:border-border-strong">
+      {/* icon */}
       <div
-        className={`${colorClass[color]} flex size-11 items-center justify-center rounded-full`}
+        className={`${iconBg[color]} grid size-11.5 place-items-center rounded-xl text-white`}
       >
         {icon}
       </div>
-      <div className="flex flex-col">
-        <span className="text-xs font-medium uppercase">{title}</span>
-        <span className="text-lg font-semibold">{value}</span>
-      </div>
+
+      {/* value */}
+      <span className="text-[27px] leading-none font-extrabold tracking-tight text-text">
+        {value}
+      </span>
+
+      {/* label */}
+      <span className="text-sm text-text-muted">
+        {title}
+      </span>
     </div>
   );
 }

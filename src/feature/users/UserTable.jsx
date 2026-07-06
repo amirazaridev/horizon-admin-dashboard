@@ -27,7 +27,7 @@ function UserTable() {
           </Table.Header>
           <Table.Body
             data={users || []}
-            render={(user) => <UserRow key={crypto.randomUUID()} user={user} />}
+            render={(user) => <UserRow key={user.id} user={user} />}
           />
         </Table>
         <Table.Footer>

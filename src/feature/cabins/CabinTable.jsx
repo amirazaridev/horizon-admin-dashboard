@@ -48,7 +48,7 @@ function CabinTable() {
         <Table.Body
           data={sortByCabins || []}
           render={(cabin) => (
-            <CabinRow key={crypto.randomUUID()} cabin={cabin} />
+            <CabinRow key={cabin.id} cabin={cabin} />
           )}
         />
       </Table>

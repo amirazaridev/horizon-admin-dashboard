@@ -62,7 +62,7 @@ function CheckinBooking() {
       <BookingDataBox booking={booking} />
 
       {!hasBreakfast && (
-        <div className="bg-primary mt-2 flex items-center gap-x-2 rounded-md px-6 py-3 shadow-xs">
+        <div className="bg-card mt-2 flex items-center gap-x-2 rounded-md px-6 py-3 shadow-xs">
           <CheckBox
             checked={addBreakFast}
             onChange={() => {

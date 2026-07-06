@@ -1,12 +1,16 @@
 import Logout from "../feature/authentication/Logout";
+import LanguageSwitcher from "./LanguageSwitcher";
+import ThemeToggle from "./ThemeToggle";
+import UserAvatar from "./UserAvatar";
 
-/**
- * Minimal header menu — renders the Logout action.
- * ThemeToggle and LanguageSwitcher now live directly in Header.jsx.
- */
 function HeaderMenu() {
   return (
-    <div className="flex items-center gap-2">
+    <div className="ms-auto flex items-center gap-2">
+      <LanguageSwitcher />
+
+      <ThemeToggle />
+
+      <UserAvatar />
       <Logout />
     </div>
   );

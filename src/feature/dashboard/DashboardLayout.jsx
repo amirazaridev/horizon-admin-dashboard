@@ -14,7 +14,7 @@ function DashboardLayout() {
 
   if (isLoading1 || isLoading2 || isLoading3)
     return (
-      <div className="bg-primary flex h-screen w-screen items-center justify-center overflow-hidden">
+      <div className="bg-bg flex h-screen w-screen items-center justify-center overflow-hidden">
         <Spinner />
       </div>
     );
@@ -27,7 +27,7 @@ function DashboardLayout() {
         numDays={numDays}
         cabinCount={cabins.length}
       />
-      <div className="mt-6 flex justify-between gap-x-12">
+      <div className="mt-6 flex justify-between gap-x-6 flex-col md:flex-row">
         <TodayActivity />
         <DurationChart confirmedStays={confirmedStays}/>
       </div>

@@ -25,8 +25,8 @@ function BookingDataBox({ booking }) {
   } = booking;
   
   return (
-    <section className="bg-primary flex flex-col rounded-md shadow-xs [&>div]:px-8">
-      <div className="bg-btn/75 flex h-11 items-center justify-between rounded-t-md text-sm text-white md:text-lg">
+    <section className="bg-card flex flex-col rounded-md shadow-xs [&>div]:px-8">
+      <div className="bg-primary/75 flex h-11 items-center justify-between rounded-t-md text-sm text-white md:text-lg">
         <div className="flex items-center gap-x-4 font-semibold">
           <HiOutlineHomeModern className="size-6" />
           <p>

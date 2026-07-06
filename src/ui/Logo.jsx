@@ -22,7 +22,7 @@ function Logo({ collapsed = false, className = "", brandPanel = false }) {
         className="grid size-11 shrink-0 place-items-center rounded-xl text-white"
         style={{
           background:
-            "linear-gradient(135deg, var(--color-btn), var(--color-soft) 70%, var(--color-indigo))",
+            "linear-gradient(135deg, var(--color-primary), var(--color-soft) 70%, var(--color-indigo))",
           boxShadow: "0 8px 22px -8px rgba(63,39,199,.7)",
         }}
       >

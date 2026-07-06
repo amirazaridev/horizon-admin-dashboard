@@ -68,3 +68,9 @@ export const formatDate = (date, pattern = "EEE, MMM dd yyyy") => {
   }).format(parseISO(date));
   return isFa() ? toPersianDigits(result) : result;
 };
+
+export const formatFaNum = (value) => {
+  if(isFa())
+    return toPersianDigits(`${value}`);
+  return `${value}`;
+}

@@ -52,7 +52,7 @@ function List({ id, children }) {
   if (openId !== id) return null;
   return createPortal(
     <ul
-      className="bg-primary fixed flex min-w-22.5 flex-col rounded-sm shadow-sm md:min-w-32"
+      className="bg-card fixed flex min-w-22.5 flex-col rounded-sm shadow-sm md:min-w-32"
       style={{
         right: position.current.x + "px",
         top: position.current.y + "px",

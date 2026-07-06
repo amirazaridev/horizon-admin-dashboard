@@ -38,7 +38,7 @@ function Window({ children, name }) {
     <div className="fixed inset-0 z-50 h-screen w-full overflow-y-hidden bg-gray-500/10 backdrop-blur-sm transition-all duration-500">
       <section
         ref={ref}
-        className="bg-primary fixed top-1/2 left-1/2 min-w-80 -translate-1/2 rounded-md px-3 shadow-md transition-all duration-500 sm:min-w-100 md:min-w-150"
+        className="bg-card fixed top-1/2 left-1/2 min-w-80 -translate-1/2 rounded-md px-3 shadow-md transition-all duration-500 sm:min-w-100 md:min-w-150"
       >
         <button
           className="text-pri-text absolute top-1 right-1 cursor-pointer border-none bg-none"

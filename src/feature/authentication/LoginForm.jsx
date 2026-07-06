@@ -14,7 +14,7 @@ import useUser from "./useUser";
 import Logo from "../../ui/Logo";
 import ThemeToggle from "../../ui/ThemeToggle";
 import LanguageSwitcher from "../../ui/LanguageSwitcher";
-import BrandPanel from "./BrandPanel";
+import BrandPanel from "../../ui/BrandPanel";
 
 function LoginForm() {
   const { t } = useTranslation();
@@ -78,7 +78,7 @@ function LForm({ t }) {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex w-11/12 flex-col gap-y-5 p-8 pe-11"
+      className="flex w-11/12 flex-col gap-y-5 p-8 pe-0 sm:pe-11"
     >
       {/* Form Header */}
       <div className="flex justify-end gap-x-2">
@@ -143,7 +143,7 @@ function LForm({ t }) {
           <Form.CheckboxInp id="remember" disabled={isPending} />
           <label htmlFor="remember">{t("login.remember")}</label>
         </div>
-        <Link className="text-btn text-sm font-semibold">
+        <Link className="text-primary text-sm font-semibold">
           {t("login.forgot")}
         </Link>
       </div>

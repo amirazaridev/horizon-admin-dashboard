@@ -5,119 +5,163 @@ import {
   ResponsiveContainer,
   Tooltip,
   XAxis,
-  YAxis,
 } from "recharts";
 import Heading from "../../ui/Heading";
-import { useThemeToggle } from "../../context/ThemeContext";
-import { eachDayOfInterval, format, isSameDay, subDays } from "date-fns";
-
-const fakeData = [
-  { label: "Jan 09", totalSales: 480, extrasSales: 20 },
-  { label: "Jan 10", totalSales: 580, extrasSales: 100 },
-  { label: "Jan 11", totalSales: 550, extrasSales: 150 },
-  { label: "Jan 12", totalSales: 600, extrasSales: 50 },
-  { label: "Jan 13", totalSales: 700, extrasSales: 150 },
-  { label: "Jan 14", totalSales: 800, extrasSales: 150 },
-  { label: "Jan 15", totalSales: 700, extrasSales: 200 },
-  { label: "Jan 16", totalSales: 650, extrasSales: 200 },
-  { label: "Jan 17", totalSales: 600, extrasSales: 300 },
-  { label: "Jan 18", totalSales: 550, extrasSales: 100 },
-  { label: "Jan 19", totalSales: 700, extrasSales: 100 },
-  { label: "Jan 20", totalSales: 800, extrasSales: 200 },
-  { label: "Jan 21", totalSales: 700, extrasSales: 100 },
-  { label: "Jan 22", totalSales: 810, extrasSales: 50 },
-  { label: "Jan 23", totalSales: 950, extrasSales: 250 },
-  { label: "Jan 24", totalSales: 970, extrasSales: 100 },
-  { label: "Jan 25", totalSales: 900, extrasSales: 200 },
-  { label: "Jan 26", totalSales: 950, extrasSales: 300 },
-  { label: "Jan 27", totalSales: 850, extrasSales: 200 },
-  { label: "Jan 28", totalSales: 900, extrasSales: 100 },
-  { label: "Jan 29", totalSales: 800, extrasSales: 300 },
-  { label: "Jan 30", totalSales: 950, extrasSales: 200 },
-  { label: "Jan 31", totalSales: 1100, extrasSales: 300 },
-  { label: "Feb 01", totalSales: 1200, extrasSales: 400 },
-  { label: "Feb 02", totalSales: 1250, extrasSales: 300 },
-  { label: "Feb 03", totalSales: 1400, extrasSales: 450 },
-  { label: "Feb 04", totalSales: 1500, extrasSales: 500 },
-  { label: "Feb 05", totalSales: 1400, extrasSales: 600 },
-  { label: "Feb 06", totalSales: 1450, extrasSales: 400 },
-];
-
-const isDarkMode = true;
+import { eachDayOfInterval, format, subDays } from "date-fns-jalali";
+import {isSameDay} from 'date-fns';
+import { useTranslation } from "react-i18next";
+import { formatFaNum } from "../../utils/helpers";
 
 function SalesChart({ bookings, numDays }) {
-  const { isDarkMode } = useThemeToggle();
+  const { t } = useTranslation();
 
   const allDays = eachDayOfInterval({
     start: subDays(new Date(), numDays - 1),
     end: new Date(),
   });
 
-  const data = allDays.map((date) => {
-    return {
-      label: format(date, "MMM dd"),
-      totalSales: bookings
-        .filter((booking) => isSameDay(date, booking.createdAt))
-        .reduce((acc, cur) => acc + cur.totalPrice, 0),
-      extrasSales: bookings
-        .filter((booking) => isSameDay(date, booking.createdAt))
-        .reduce((acc, cur) => acc + cur.extrasPrice, 0),
-    };
-  });
-
-  const colors = isDarkMode
-    ? {
-        totalSales: { stroke: "#4f46e5", fill: "#4f46e5" },
-        extrasSales: { stroke: "#22c55e", fill: "#22c55e" },
-        text: "#e5e7eb",
-        background: "#18212f",
-      }
-    : {
-        totalSales: { stroke: "#4f46e5", fill: "#c7d2fe" },
-        extrasSales: { stroke: "#16a34a", fill: "#dcfce7" },
-        text: "#374151",
-        background: "#fff",
-      };
+  const data = allDays.map((date) => ({
+    label: formatFaNum(format(date, "MMMM dd")),
+    totalSales: bookings
+      .filter((booking) => isSameDay(date, new Date(booking.createdAt)))
+      .reduce((acc, cur) => acc + cur.totalPrice, 0),
+    extrasSales: bookings
+      .filter((booking) => isSameDay(date, new Date(booking.createdAt)))
+      .reduce((acc, cur) => acc + cur.extrasPrice, 0),
+  }));
 
   return (
-    <div className="chart bg-primary mt-8 flex w-full flex-col gap-y-5 rounded-md p-5 shadow-2xs">
-      <Heading as="h3">
-        Sales from {format(allDays[0], "MMM dd yyyy")} &mdash;{" "}
-        {format(allDays.at(-1), "MMM dd yyyy")}
-      </Heading>
+    <div className="bg-card border-border shadow-shadow-soft hover:border-border-strong mt-6 flex w-full flex-col gap-y-5 rounded-2xl border p-5 transition-[transform,border-color] duration-200 hover:-translate-y-0.75">
+      {/* Header */}
+      <div className="text-end">
+        <Heading as="h3">{t("dashboard.salesOverview")}</Heading>
+        <p className="text-text-muted text-sm">
+          {t("dashboard.salesOverviewSubtitle", { count: numDays })}
+        </p>
+      </div>
+
       <ResponsiveContainer height={300} width="100%">
-        <AreaChart data={data}>
+        <AreaChart
+          data={data}
+          margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
+        >
+          <defs>
+            <linearGradient id="totalSalesGradient" x1="0" y1="0" x2="0" y2="1">
+              <stop
+                offset="0%"
+                stopColor="var(--color-indigo)"
+                stopOpacity={0.35}
+              />
+              <stop
+                offset="100%"
+                stopColor="var(--color-indigo)"
+                stopOpacity={0}
+              />
+            </linearGradient>
+            <linearGradient
+              id="extrasSalesGradient"
+              x1="0"
+              y1="0"
+              x2="0"
+              y2="1"
+            >
+              <stop
+                offset="0%"
+                stopColor="var(--color-green)"
+                stopOpacity={0.35}
+              />
+              <stop
+                offset="100%"
+                stopColor="var(--color-green)"
+                stopOpacity={0}
+              />
+            </linearGradient>
+          </defs>
+
+          <CartesianGrid
+            horizontal={true}
+            vertical={false}
+            stroke="var(--color-border)"
+          />
+
           <XAxis
             dataKey="label"
-            tick={{ fill: colors.text }}
-            tickLine={{ stroke: colors.text }}
+            axisLine={false}
+            tickLine={false}
+            tick={{ fill: "var(--color-text-faint)", fontSize: 12 }}
+            dy={10}
           />
-          <YAxis
-            unit="$"
-            tick={{ fill: colors.text }}
-            tickLine={{ stroke: colors.text }}
+
+          <Tooltip
+            cursor={{
+              stroke: "var(--color-border-strong)",
+              strokeDasharray: "4 4",
+            }}
+            contentStyle={{
+              borderRadius: 8,
+              border: "1px solid var(--color-border)",
+              background: "var(--color-card)",
+            }}
+            labelStyle={{ color: "var(--color-text)" }}
+            formatter={(value, name) => [formatFaNum(value), name]}
           />
-          <Tooltip contentStyle={{ backgroundColor: colors.background }} />
+
           <Area
             dataKey="totalSales"
             type="monotone"
-            stroke={colors.totalSales.stroke}
-            fill={colors.totalSales.fill}
-            strokeWidth={2}
-            name="Total sales"
-            unit="$"
+            stroke="var(--color-indigo)"
+            strokeWidth={2.5}
+            fill="url(#totalSalesGradient)"
+            name={t("dashboard.totalSales")}
+            dot={{ r: 3, strokeWidth: 0, fill: "var(--color-indigo)" }}
+            activeDot={{
+              r: 6,
+              fill: "var(--color-indigo)",
+              stroke: "var(--color-card)",
+              strokeWidth: 3,
+            }}
           />
           <Area
             dataKey="extrasSales"
             type="monotone"
-            stroke={colors.extrasSales.stroke}
-            fill={colors.extrasSales.fill}
-            strokeWidth={2}
-            name="Extras sales"
-            unit="$"
+            stroke="var(--color-green)"
+            strokeWidth={2.5}
+            fill="url(#extrasSalesGradient)"
+            name={t("dashboard.extrasSales")}
+            dot={false}
+            activeDot={{
+              r: 5,
+              fill: "var(--color-green)",
+              stroke: "var(--color-card)",
+              strokeWidth: 2,
+            }}
           />
         </AreaChart>
       </ResponsiveContainer>
+
+      {/* Legend سفارشی */}
+      <div className="flex items-center justify-center gap-x-6">
+        <LegendItem
+          color="var(--color-indigo)"
+          label={t("dashboard.totalSales")}
+        />
+        <LegendItem
+          color="var(--color-green)"
+          label={t("dashboard.extrasSales")}
+        />
+      </div>
+    </div>
+  );
+}
+
+function LegendItem({ color, label }) {
+  return (
+    <div className="flex items-center gap-2">
+      <span
+        className="size-2.5 shrink-0 rounded-full"
+        style={{ backgroundColor: color }}
+      />
+      <span className="text-text text-sm">{label}</span>
     </div>
   );
 }

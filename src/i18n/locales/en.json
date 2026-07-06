@@ -81,7 +81,7 @@
   },
   "dashboard": {
     "title": "Dashboard",
-    "subtitle": "Here's what's happening at Horizon Cabins today.",
+    "subtitle": "Here's what's happening at Horizon Cabins.",
     "totalBookings": "Total Bookings",
     "sales": "Sales",
     "salesLabel": "Total Sales",
@@ -102,7 +102,21 @@
     "totalSales": "Total sales",
     "extrasSales": "Extras sales",
     "avgNights": "avg nights",
-    "stayDurationSummary": "Stay duration summary"
+    "stayDurationSummary": "Stay duration summary",
+    "salesFrom": "Sales from {{start}} — {{end}}",
+    "duration": {
+      "1night": "1 night",
+      "2nights": "2 nights",
+      "3nights": "3 nights",
+      "4to5nights": "4-5 nights",
+      "6to7nights": "6-7 nights",
+      "8to14nights": "8-14 nights",
+      "15to21nights": "15-21 nights",
+      "21plusNights": "21+ nights"
+    },
+    "guestArriving": "{{name}} امروز وارد می‌شود",
+    "guestDeparting": "{{name}} امروز خارج می‌شود",
+    "nightsCount": "{{count}} شب اقامت"
   },
   "cabins": {
     "title": "All Cabins",

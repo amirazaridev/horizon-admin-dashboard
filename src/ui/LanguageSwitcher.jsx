@@ -2,11 +2,6 @@ import { useTranslation } from "react-i18next";
 import { SUPPORTED_LANGUAGES } from "../i18n";
 import i18n from "../i18n";
 
-/**
- * Pill-style FA / EN language toggle.
- * The active language gets the brand gradient; inactive is transparent.
- * Switching triggers i18n.changeLanguage → RTL/font swap via index.js listener.
- */
 export default function LanguageSwitcher() {
   const { i18n: i18nInstance } = useTranslation();
   const current = i18nInstance.language?.startsWith("fa") ? "fa" : "en";

@@ -51,7 +51,35 @@ function App() {
           </Routes>
         </BrowserRouter>
       </QueryClientProvider>
-      <Toaster gutter={13} position="top-center" toastOptions={{}} />
+      <Toaster
+        gutter={16}
+        position="top-center"
+        toastOptions={{
+          duration: 4000,
+          style: {
+            borderRadius: "14px",
+            background: "var(--color-card)",
+            color: "var(--color-text)",
+            border: "1px solid var(--color-border)",
+            padding: "14px 18px",
+            fontSize: "14px",
+            fontWeight: 500,
+            boxShadow: "var(--color-shadow-toast)",
+          },
+          success: {
+            iconTheme: {
+              primary: "var(--color-green)",
+              secondary: "var(--color-card)",
+            },
+          },
+          error: {
+            iconTheme: {
+              primary: "var(--color-rose)",
+              secondary: "var(--color-card)",
+            },
+          },
+        }}
+      />
     </ThemeProvider>
   );
 }

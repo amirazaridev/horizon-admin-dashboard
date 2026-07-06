@@ -6,7 +6,7 @@ function CheckBox({ children, disable, checked, onChange }) {
         checked={checked}
         onChange={onChange}
         type="checkbox"
-        className="size-4 accent-btn"
+        className="size-4 accent-primary"
       />
       <label>{children}</label>
     </>

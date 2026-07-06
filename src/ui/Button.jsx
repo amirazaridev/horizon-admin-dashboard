@@ -1,31 +1,15 @@
 import { useNavigate } from "react-router";
 
-/**
- * Modern button component — matches the mockup design.
- *
- * Variants (via `type` prop):
- *   "primary"    — gradient indigo, white text, shadow lift on hover
- *   "primaryF"   — same as primary but full-width
- *   "ghost"      — card bg, subtle border, dark text
- *   "cancel"     — alias for ghost (backward compat)
- *   "danger"     — rose/red, white text, darker on hover
- *
- * Modifiers:
- *   size="sm"     — compact padding & font
- *   isLink        — navigates back on click (no onClick passed)
- *   disabled      — reduced opacity, no pointer
- *   typeBtn       — native <button type> (defaults to "button")
- */
 const VARIANTS = {
   primary: {
     base: "inline-flex items-center justify-center gap-2 rounded-[12px] border-0 px-5 py-3 font-semibold text-white cursor-pointer transition-all duration-150",
-    bg: "bg-gradient-to-br from-[var(--color-btn,#3f27c7)] to-[var(--color-soft,#5b3fe0)]",
+    bg: "bg-gradient-to-br from-[var(--color-primary,#3f27c7)] to-[var(--color-soft,#5b3fe0)]",
     hover: "hover:-translate-y-0.5 hover:shadow-[0_10px_24px_-6px_rgba(63,39,199,.7)]",
     active: "active:translate-y-0",
   },
   primaryF: {
     base: "flex items-center justify-center gap-2 w-full rounded-[12px] border-0 px-5 py-3 font-semibold text-white cursor-pointer transition-all duration-150",
-    bg: "bg-gradient-to-br from-[var(--color-btn,#3f27c7)] to-[var(--color-soft,#5b3fe0)]",
+    bg: "bg-gradient-to-br from-[var(--color-primary,#3f27c7)] to-[var(--color-soft,#5b3fe0)]",
     hover: "hover:-translate-y-0.5 hover:shadow-[0_10px_24px_-6px_rgba(63,39,199,.7)]",
     active: "active:translate-y-0",
   },

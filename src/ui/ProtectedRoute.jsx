@@ -15,7 +15,7 @@ function ProtectedRoute({ children }) {
 
   if (isLoading)
     return (
-      <div className="bg-primary flex h-screen w-screen items-center justify-center overflow-hidden">
+      <div className="bg-card flex h-screen w-screen items-center justify-center overflow-hidden">
         <Spinner />
       </div>
     );

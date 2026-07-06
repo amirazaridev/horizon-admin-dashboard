@@ -81,7 +81,7 @@
   },
   "dashboard": {
     "title": "داشبورد",
-    "subtitle": "خلاصه‌ای از وضعیت کلبه‌های هوریزون در امروز.",
+    "subtitle": "خلاصه‌ای از وضعیت کلبه‌های هوریزون.",
     "totalBookings": "کل رزروها",
     "sales": "فروش",
     "salesLabel": "کل فروش",
@@ -102,7 +102,21 @@
     "totalSales": "کل فروش",
     "extrasSales": "فروش افزونه",
     "avgNights": "میانگین شب",
-    "stayDurationSummary": "خلاصه مدت اقامت"
+    "stayDurationSummary": "خلاصه مدت اقامت",
+    "salesFrom": "فروش از {{start}} — {{end}}",
+    "duration": {
+      "1night": "۱ شب",
+      "2nights": "۲ شب",
+      "3nights": "۳ شب",
+      "4to5nights": "۴ تا ۵ شب",
+      "6to7nights": "۶ تا ۷ شب",
+      "8to14nights": "۸ تا ۱۴ شب",
+      "15to21nights": "۱۵ تا ۲۱ شب",
+      "21plusNights": "۲۱+ شب"
+    },
+    "guestArriving": "{{name}} امروز وارد می‌شود",
+    "guestDeparting": "{{name}} امروز خارج می‌شود",
+    "nightsCount": "{{count}} شب اقامت"
   },
   "cabins": {
     "title": "همه کلبه‌ها",
