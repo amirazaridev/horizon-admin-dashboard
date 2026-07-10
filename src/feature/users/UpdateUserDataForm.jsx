@@ -21,7 +21,7 @@ function UpdateUserDataForm() {
   };
 
   return (
-    <div className="bg-primary my-4 rounded-md px-8 py-2 shadow-xs">
+    <div className="bg-card my-4 rounded-md px-8 py-2 shadow-xs">
       <Form divide={false} onSubmit={handleSubmit(onSubmit)}>
         <Form.Row label="Email address" error={errors?.email?.message}>
           <Form.InputText

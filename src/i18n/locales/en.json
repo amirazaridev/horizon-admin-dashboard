@@ -67,6 +67,7 @@
     "theme": "Theme",
     "language": "Language",
     "profile": "Profile",
+    "accountSettings": "Account Settings",
     "logout": "Logout"
   },
   "auth": {
@@ -116,7 +117,7 @@
     },
     "guestArriving": "{{name}} امروز وارد می‌شود",
     "guestDeparting": "{{name}} امروز خارج می‌شود",
-    "nightsCount": "{{count}} شب اقامت"
+    "nightsCount": "{{count}} nights"
   },
   "cabins": {
     "title": "All Cabins",

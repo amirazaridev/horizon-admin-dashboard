@@ -67,6 +67,7 @@
     "theme": "تم",
     "language": "زبان",
     "profile": "پروفایل",
+    "accountSettings": "تنظیمات حساب",
     "logout": "خروج"
   },
   "auth": {

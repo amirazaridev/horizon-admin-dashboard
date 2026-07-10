@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useRef, useState } from "react";
-import { HiEllipsisVertical } from "react-icons/hi2";
+import { HiEllipsisHorizontal } from "react-icons/hi2";
 import useOutsideClick from "../hooks/useOutsideClick";
 import { createPortal } from "react-dom";
 
@@ -13,73 +13,113 @@ function Menus({ children }) {
   const open = setOpenId;
 
   return (
-    <MenuContext value={{ openId, position, close, open }}>
+    <MenuContext.Provider value={{ openId, position, close, open }}>
       {children}
-    </MenuContext>
+    </MenuContext.Provider>
   );
 }
-function Toggle({ id }) {
+
+function Toggle({ id, icon }) {
   const { openId, open, close, position } = useContext(MenuContext);
+
   useEffect(() => {
     const handleScroll = () => close();
-    document.addEventListener("scroll", handleScroll);
-    return () => document.removeEventListener("scroll", handleScroll);
+    document.addEventListener("scroll", handleScroll, true);
+    return () => document.removeEventListener("scroll", handleScroll, true);
   }, [close]);
 
   function handleClick(e) {
-    // e.stopPropagation();
-    // e.preventDefault();
-
     const rect = e.target.closest("button").getBoundingClientRect();
-    position.current = {
-      x: window.innerWidth - rect.width - rect.x,
-      y: rect.y + rect.height + 8,
-    };
+    const isRtl = document.documentElement.dir === "rtl";
+
+    position.current = isRtl
+      ? {
+          side: window.innerWidth - rect.right - rect.right / 1,
+          top: rect.bottom + 8,
+        }
+      : {
+          side: rect.left - 100,
+          top: rect.bottom + 8,
+        };
 
     openId === "" || openId !== id ? open(id) : close();
   }
 
   return (
-    <button className="cursor-pointer" onClick={handleClick}>
-      <HiEllipsisVertical className="size-7" />
+    <button
+      className="text-text-muted hover:text-primary hover:bg-primary/[0.06] flex cursor-pointer items-center rounded-lg p-1.5 transition-colors duration-150"
+      onClick={handleClick}
+    >
+      {icon || <HiEllipsisHorizontal className="size-5" />}
     </button>
   );
 }
+
 function List({ id, children }) {
-  const { position, openId } = useContext(MenuContext);
-  // const ref = useOutsideClick(close);
+  const { position, openId, close } = useContext(MenuContext);
+  const ref = useOutsideClick(close, true);
 
   if (openId !== id) return null;
+
+  const isRtl = document.documentElement.dir === "rtl";
+
+  const style = isRtl
+    ? { right: position.current.side + "px", top: position.current.top + "px" }
+    : { left: position.current.side + "px", top: position.current.top + "px" };
+
   return createPortal(
     <ul
-      className="bg-card fixed flex min-w-22.5 flex-col rounded-sm shadow-sm md:min-w-32"
-      style={{
-        right: position.current.x + "px",
-        top: position.current.y + "px",
-      }}
+      ref={ref}
+      className="menu-dropdown bg-card border-border-strong shadow-shadow-soft fixed z-50 min-w-44 flex-col overflow-hidden rounded-xl border p-1 md:min-w-48"
+      style={style}
     >
       {children}
     </ul>,
     document.body,
   );
 }
-function Button({ children, onClick, icon }) {
+
+function Button({ children, onClick, icon, danger }) {
   const { close } = useContext(MenuContext);
+
   function handleClick() {
     onClick?.();
     close();
   }
+
   return (
-    <li className="" onClick={handleClick}>
-      <button className="hover:bg-secondary text-pri-text flex w-full items-center gap-2.5 px-2.5 py-2 text-left text-xs transition-all duration-200 sm:gap-4 sm:px-3.5 sm:text-base md:py-3 md:text-lg">
-        {icon}
+    <li>
+      <button
+        onClick={handleClick}
+        className={`group flex w-full cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all duration-150 ${
+          danger
+            ? "text-rose hover:bg-rose/[0.08]"
+            : "text-text hover:bg-primary/[0.08]"
+        }`}
+      >
+        {icon && (
+          <span
+            className={`flex size-5 items-center justify-center transition-colors duration-150 ${
+              danger
+                ? "text-rose/60 group-hover:text-rose"
+                : "text-text-muted group-hover:text-primary"
+            }`}
+          >
+            {icon}
+          </span>
+        )}
         <span>{children}</span>
       </button>
     </li>
   );
 }
 
+function Divider() {
+  return <li className="bg-border-strong my-1 h-px" />;
+}
+
 Menus.Button = Button;
 Menus.Toggle = Toggle;
 Menus.List = List;
+Menus.Divider = Divider;
 export default Menus;

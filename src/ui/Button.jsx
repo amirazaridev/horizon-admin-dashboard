@@ -31,6 +31,18 @@ const VARIANTS = {
     hover: "hover:bg-[#e11d48]",
     active: "active:translate-y-px",
   },
+  checkedIn: {
+    base: "inline-flex items-center justify-center gap-1.5 rounded-[12px] border-0 px-5 py-3 font-semibold text-white cursor-pointer transition-all duration-150",
+    bg: "bg-emerald-500",
+    hover: "hover:bg-emerald-600 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_-6px_rgba(16,185,129,.5)]",
+    active: "active:translate-y-0",
+  },
+  checkedOut: {
+    base: "inline-flex items-center justify-center gap-1.5 rounded-[12px] border-0 px-5 py-3 font-semibold text-white cursor-pointer transition-all duration-150",
+    bg: "bg-orange-500",
+    hover: "hover:bg-orange-600 hover:-translate-y-0.5 hover:shadow-[0_10px_24px_-6px_rgba(249,115,22,.5)]",
+    active: "active:translate-y-0",
+  },
 };
 
 const SIZES = {

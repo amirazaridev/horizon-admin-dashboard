@@ -24,7 +24,7 @@ function UpdatePassForm() {
   };
 
   return (
-    <div className="bg-primary mt-4 rounded-md px-8 py-2 shadow-xs">
+    <div className="bg-card mt-4 rounded-md px-8 py-2 shadow-xs">
       <Form divide={false} onSubmit={handleSubmit(onSubmit)}>
         <Form.Row label="New password" error={errors?.password?.message}>
           <Form.InputText

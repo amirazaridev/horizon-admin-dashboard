@@ -22,7 +22,7 @@ function UpdateSettingForm() {
     editSetting({[name]:e.target.value});
   };
   return (
-    <section className="h-77 w-full rounded-md bg-primary p-5 shadow-2xs">
+    <section className="h-77 w-full rounded-md bg-card p-5 shadow-2xs">
       <Form divide={false}>
         <Form.Row label="Minimum nights/booking">
           <Form.InputText
