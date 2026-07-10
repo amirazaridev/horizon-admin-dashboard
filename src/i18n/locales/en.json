@@ -142,7 +142,10 @@
     "createCabin": "Create Cabin",
     "empty": "No cabins could be found.",
     "guests": "guests",
-    "perNight": "/night"
+    "perNight": "/night",
+    "sortByName": "Sort by name",
+    "sortByCapacityLow": "Sort by capacity (low first)",
+    "sortByCapacityHigh": "Sort by capacity (high first)"
   },
   "bookings": {
     "title": "Bookings",

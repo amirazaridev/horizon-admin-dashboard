@@ -13,9 +13,9 @@ A modern admin dashboard for managing hotel operations, including rooms, reserva
 - 📅 Manage reservations and bookings
 - 👤 Manage users
 - 📊 Dashboard statistics
+- 🌍 Multilingual interface (English & Persian) with dynamic language switching
 - 🔍 Global search for rooms, users, and reservations
 - 📝 Form validation and error handling
-- 📱 Responsive design
 
 ## Tech Stack
 
@@ -26,6 +26,8 @@ A modern admin dashboard for managing hotel operations, including rooms, reserva
 - React Hook Form
 - Tailwind CSS
 - React Hot Toast
+- i18next
+- react-i18next
 
 ## Project Structure
 

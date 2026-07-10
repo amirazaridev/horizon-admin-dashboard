@@ -30,7 +30,7 @@ function Logo({ collapsed = false, className = "", brandPanel = false }) {
       </div>
       {!collapsed && (
         <div className="leading-tight">
-          <div className="text-xl font-extrabold tracking-tight">
+          <div className="text-xl font-extrabold tracking-tight text-text">
             {t("brand.name")}
           </div>
           <div className="text-text-muted text-xs font-semibold tracking-[0.04em] uppercase">

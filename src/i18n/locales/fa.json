@@ -130,7 +130,6 @@
     "option": "گزینه‌ها",
     "fitsUpTo": "ظرفیت تا {{count}} مهمان",
     "duplicate": "کپی",
-    "copyOf": "کپی {{name}}",
     "noDiscount": "بدون تخفیف",
     "withDiscount": "با تخفیف",
     "cabinName": "نام کلبه",
@@ -142,7 +141,10 @@
     "createCabin": "ایجاد کلبه",
     "empty": "هیچ کلبه‌ای یافت نشد.",
     "guests": "نفر",
-    "perNight": "/شب"
+    "perNight": "/شب",
+    "sortByName":"مرتب‌سازی بر اساس نام",
+    "sortByCapacityLow":"مرتب‌سازی بر اساس ظرفیت (صعودی)",
+    "sortByCapacityHigh":"مرتب‌سازی بر اساس ظرفیت (نزولی)"
   },
   "bookings": {
     "title": "رزروها",

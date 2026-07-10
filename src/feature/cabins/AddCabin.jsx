@@ -6,7 +6,7 @@ function AddCabin() {
   return (
     <Modal>
       <Modal.Open>
-        <Button>Add new cabin</Button>
+        <Button size="sm">Add new cabin</Button>
       </Modal.Open>
       <Modal.Window>
         <CreateCabinForm />

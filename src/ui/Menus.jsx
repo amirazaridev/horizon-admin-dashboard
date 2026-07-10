@@ -13,13 +13,13 @@ function Menus({ children }) {
   const open = setOpenId;
 
   return (
-    <MenuContext.Provider value={{ openId, position, close, open }}>
+    <MenuContext value={{ openId, position, close, open }}>
       {children}
-    </MenuContext.Provider>
+    </MenuContext>
   );
 }
 
-function Toggle({ id, icon }) {
+function Toggle({ id, icon, justBottom = false }) {
   const { openId, open, close, position } = useContext(MenuContext);
 
   useEffect(() => {
@@ -34,7 +34,9 @@ function Toggle({ id, icon }) {
 
     position.current = isRtl
       ? {
-          side: window.innerWidth - rect.right - rect.right / 1,
+          side: justBottom
+            ? window.innerWidth - rect.right -120
+            : window.innerWidth - rect.right - rect.right / 1,
           top: rect.bottom + 8,
         }
       : {
@@ -47,10 +49,10 @@ function Toggle({ id, icon }) {
 
   return (
     <button
-      className="text-text-muted hover:text-primary hover:bg-primary/[0.06] flex cursor-pointer items-center rounded-lg p-1.5 transition-colors duration-150"
+      className="text-text-muted hover:text-primary hover:bg-primary/2 flex cursor-pointer items-center rounded-lg p-1.5 transition-colors duration-150"
       onClick={handleClick}
     >
-      {icon || <HiEllipsisHorizontal className="size-5" />}
+      {icon || <HiEllipsisHorizontal className="size-5 text-white hover:text-white/50" />}
     </button>
   );
 }
@@ -93,8 +95,8 @@ function Button({ children, onClick, icon, danger }) {
         onClick={handleClick}
         className={`group flex w-full cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 text-sm transition-all duration-150 ${
           danger
-            ? "text-rose hover:bg-rose/[0.08]"
-            : "text-text hover:bg-primary/[0.08]"
+            ? "text-rose hover:bg-rose/8"
+            : "text-text hover:bg-primary/8"
         }`}
       >
         {icon && (

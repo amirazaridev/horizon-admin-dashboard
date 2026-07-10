@@ -80,7 +80,7 @@ function NavContent({ collapsed, setCollapsed, isDrawer, onNavigate }) {
       title: t("nav.bookings"),
       icon: HiOutlineFolderOpen,
       path: "bookings",
-      badge: { text: t("common.add"), tone: "green" },
+      // badge: { text: t("common.add"), tone: "green" },
     },
     {
       title: t("nav.cabins"),
@@ -179,8 +179,8 @@ function NavContent({ collapsed, setCollapsed, isDrawer, onNavigate }) {
         />
         {!collapsed && (
           <div className="leading-tight">
-            <b className="block text-[13.5px] font-bold">{user.name}</b>
-            <small className="text-text-muted text-[11.5px]">
+            <b className="block text-sm font-bold text-text">{user.name}</b>
+            <small className="text-text-muted text-xs">
               {t(`users.${user.role}`)}
             </small>
           </div>

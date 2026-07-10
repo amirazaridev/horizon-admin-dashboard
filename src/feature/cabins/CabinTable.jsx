@@ -1,6 +1,5 @@
 import { useCabins } from "./useCabins";
-import Table from "../../ui/Table";
-import CabinRow from "./CabinRow";
+import CabinCard from "./CabinCard";
 import Spinner from "../../ui/Spinner";
 import toast from "react-hot-toast";
 import Menus from "../../ui/Menus";
@@ -16,7 +15,6 @@ function CabinTable() {
   else if (!cabins) return <Empty resourceName="cabins" />;
 
   // ? Filtering
-
   const filterValue = searchParam.get("discount") || "all";
   let filteredCabins;
   if (filterValue === "all") filteredCabins = cabins;
@@ -36,22 +34,11 @@ function CabinTable() {
 
   return (
     <Menus>
-      <Table columns="0.6fr 1fr 2.2fr 1fr 1fr 1fr">
-        <Table.Header>
-          <div></div>
-          <div>Cabin</div>
-          <div>Capacity</div>
-          <div>Price</div>
-          <div>Discount</div>
-          <div className="text-end">option</div>
-        </Table.Header>
-        <Table.Body
-          data={sortByCabins || []}
-          render={(cabin) => (
-            <CabinRow key={cabin.id} cabin={cabin} />
-          )}
-        />
-      </Table>
+      <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {sortByCabins.map((cabin, index) => (
+          <CabinCard key={cabin.id} cabin={cabin} index={index} />
+        ))}
+      </div>
     </Menus>
   );
 }

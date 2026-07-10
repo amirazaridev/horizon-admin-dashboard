@@ -55,10 +55,8 @@ export const formatCurrency = (value) => {
     );
     return `${num} تومان`;
   }
-  return new Intl.NumberFormat("en", {
-    style: "currency",
-    currency: "USD",
-  }).format(value);
+  const num = new Intl.NumberFormat("en").format(value); 
+  return `${num} تومان`;
 };
 
 // Locale-aware date formatting using date-fns patterns.
