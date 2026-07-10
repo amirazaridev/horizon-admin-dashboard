@@ -25,23 +25,22 @@ A modern admin dashboard for managing hotel operations, including rooms, reserva
 - TanStack React Query
 - React Hook Form
 - Tailwind CSS
-- Axios
 - React Hot Toast
 
 ## Project Structure
 
 src/
-├── context/
-├── feature/
-├── hooks/
-├── i18n/
-├── pages/
-├── routes/
-├── ui/
-├── utils/
-├── App.jsx
-└── main.jsx
-└── index.css
+- ├── context/
+- ├── feature/
+- ├── hooks/
+- ├── i18n/
+- ├── pages/
+- ├── routes/
+- ├── ui/
+- ├── utils/
+- ├── App.jsx
+- └── main.jsx
+- └── index.css
 
 ## API Integration
 
