@@ -97,7 +97,7 @@
     "stayDuration": "Stay Duration",
     "nightsDistribution": "Nights distribution",
     "todayActivity": "Today's Activity",
-    "liveCheckins": "Live check-ins & check-outs",
+    "todayCheckins": "Check-ins & check-outs for today",
     "topCabins": "Top Cabins",
     "byOccupancy": "By occupancy this month",
     "totalSales": "Total sales",
@@ -122,6 +122,7 @@
   "cabins": {
     "title": "All Cabins",
     "addNew": "Add new cabin",
+    "descForm": "Fill in the details below to list a new cabin.",
     "addCabin": "Add cabin",
     "cabin": "Cabin",
     "capacity": "Capacity",
@@ -146,6 +147,13 @@
     "sortByName": "Sort by name",
     "sortByCapacityLow": "Sort by capacity (low first)",
     "sortByCapacityHigh": "Sort by capacity (high first)"
+  },
+  "form": {
+    "imagePreview": "Image Preview",
+    "removeImage": "Remove Image",
+    "changeImage": "Click to change",
+    "dropImageHere": "Drag or click to upload image",
+    "imageHint": "PNG or JPG (Max 5MB)"
   },
   "bookings": {
     "title": "Bookings",

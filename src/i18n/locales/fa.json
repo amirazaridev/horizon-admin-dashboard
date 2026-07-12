@@ -97,7 +97,7 @@
     "stayDuration": "مدت اقامت",
     "nightsDistribution": "توزیع شب‌ها",
     "todayActivity": "فعالیت امروز",
-    "liveCheckins": "تحویل و تخلیه لحظه‌ای",
+    "todayCheckins": "تحویل و تخلیه برای امروز",
     "topCabins": "برترین کلبه‌ها",
     "byOccupancy": "بر اساس اشغال این ماه",
     "totalSales": "کل فروش",
@@ -122,6 +122,7 @@
   "cabins": {
     "title": "همه کلبه‌ها",
     "addNew": "افزودن کلبه جدید",
+    "descForm": "جزئیات زیر را برای افزودن کلبه جدید تکمیل کنید.",
     "addCabin": "افزودن کلبه",
     "cabin": "کلبه",
     "capacity": "ظرفیت",
@@ -142,9 +143,17 @@
     "empty": "هیچ کلبه‌ای یافت نشد.",
     "guests": "نفر",
     "perNight": "/شب",
-    "sortByName":"مرتب‌سازی بر اساس نام",
-    "sortByCapacityLow":"مرتب‌سازی بر اساس ظرفیت (صعودی)",
-    "sortByCapacityHigh":"مرتب‌سازی بر اساس ظرفیت (نزولی)"
+    "sortByName": "مرتب‌سازی بر اساس نام",
+    "sortByCapacityLow": "مرتب‌سازی بر اساس ظرفیت (صعودی)",
+    "sortByCapacityHigh": "مرتب‌سازی بر اساس ظرفیت (نزولی)"
+  },
+
+  "form": {
+    "imagePreview": "پیش‌نمایش عکس",
+    "removeImage": "حذف عکس",
+    "changeImage": "برای تغییر کلیک کنید",
+    "dropImageHere": "عکس را بکشید یا کلیک کنید",
+    "imageHint": "PNG یا JPG (حداکثر ۵ مگابایت)"
   },
   "bookings": {
     "title": "رزروها",

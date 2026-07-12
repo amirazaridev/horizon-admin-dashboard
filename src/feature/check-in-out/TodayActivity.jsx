@@ -1,19 +1,21 @@
+import { useTranslation } from "react-i18next";
 import Heading from "../../ui/Heading";
 import Spinner from "../../ui/Spinner";
 import TodayItem from "./TodayItem";
 import useTodayActivity from "./useTodayActivity";
 
 function TodayActivity() {
+  const {t} = useTranslation()
   const { activities, isLoading } = useTodayActivity();
 
   return (
-    <div className="bg-white rounded-xl p-5 shadow-[0_2px_12px_rgba(0,0,0,0.06)] w-full flex flex-col gap-5 overflow-scroll overflow-x-hidden scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:w-0">
+    <div className="bg-card scrollbar-none hover:border-border-strong shadow-shadow-soft flex w-full flex-col gap-5 overflow-scroll overflow-x-hidden rounded-xl p-5 transition-[transform,border-color] duration-200 [-ms-overflow-style:none] hover:-translate-y-0.75 [&::-webkit-scrollbar]:w-0">
       <div className="flex flex-col gap-1">
-        <Heading as="h3" className="text-[#1a1a2e] text-lg font-semibold">
-          Today
+        <Heading as="h3" className="text-lg font-semibold text-text">
+          {t("dashboard.todayActivity")}
         </Heading>
         <p className="text-sm text-gray-400">
-          Check-ins & check-outs for today
+          {t("dashboard.todayCheckins")}
         </p>
       </div>
 
@@ -28,7 +30,7 @@ function TodayActivity() {
           <div className="flex flex-col items-center justify-center py-10 text-gray-400">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="w-10 h-10 mb-3 text-gray-300"
+              className="mb-3 h-10 w-10 text-gray-300"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"

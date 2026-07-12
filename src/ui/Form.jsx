@@ -2,11 +2,10 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
-
-function Form({ onSubmit, children, divide = true }) {
+function Form({ onSubmit, children }) {
   return (
     <form
-      className={`text-text flex min-w-90 flex-col ${divide ? "divide-y divide-gray-400/15" : ""} px-2 pt-2 pb-4 sm:min-w-130 md:min-w-180`}
+      className="text-text relative flex min-w-90 flex-col pt-6 sm:min-w-130 md:min-w-180"
       onSubmit={onSubmit}
     >
       {children}
@@ -23,29 +22,8 @@ function CheckboxInp({ id, disabled = false }) {
     />
   );
 }
-function InputText({
-  type = "text",
-  id,
-  disabled,
-  register = {},
-  defValue,
-  placeholder,
-  onBlur,
-  w_full = false,
-}) {
-  return (
-    <input
-      className={`focus:ring-primary/30 h-7 ${w_full ? "w-full" : "w-35"} rounded-lg border border-gray-500/50 p-1 outline-none focus:ring sm:w-55 md:h-8.5 md:w-70`}
-      type={type}
-      id={id}
-      disabled={disabled}
-      defaultValue={defValue}
-      onBlur={onBlur}
-      placeholder={placeholder}
-      {...register}
-    />
-  );
-}
+const BASE_CL_INPUT =
+  "bg-surface border-border text-text placeholder:text-text-faint focus:bg-surface-2 w-full rounded-xl border py-3 ps-10 pe-3.5 text-base transition-all outline-none";
 function InputTextWithIcon({
   icon,
   type = "text",
@@ -56,7 +34,7 @@ function InputTextWithIcon({
   placeholder,
   onBlur,
   hasError,
-  autoComplete
+  autoComplete,
 }) {
   const {
     i18n: { language },
@@ -69,7 +47,7 @@ function InputTextWithIcon({
     >
       {icon}
       <input
-        className={`bg-surface border-border text-text placeholder:text-text-faint ${hasError ? "focus:shadow-input-error border-red-600" : "focus:border-primary focus:shadow-input"} focus:bg-surface-2 w-full rounded-xl border py-3 ps-10 pe-3.5 text-base transition-all outline-none`}
+        className={`${BASE_CL_INPUT} ${hasError ? "focus:shadow-input-error border-red-600" : "focus:border-primary focus:shadow-input"} `}
         type={type}
         maxLength={150}
         disabled={disabled}
@@ -91,7 +69,7 @@ function InputPassWithIcon({
   placeholder,
   register = {},
   hasError,
-  autoComplete
+  autoComplete,
 }) {
   const {
     i18n: { language },
@@ -106,7 +84,7 @@ function InputPassWithIcon({
     >
       {icon}
       <input
-        className={`bg-surface border-border text-text placeholder:text-text-faint ${hasError ? "focus:shadow-input-error border-red-600" : "focus:border-primary focus:shadow-input"} focus:bg-surface-2 w-full rounded-xl border py-3 ps-10 pe-3.5 text-base transition-all outline-none`}
+        className={`${BASE_CL_INPUT} ${hasError ? "focus:shadow-input-error border-red-600" : "focus:border-primary focus:shadow-input"} pe-12`}
         type={showPassword ? "text" : "password"}
         disabled={disabled}
         maxLength={150}
@@ -127,10 +105,51 @@ function InputPassWithIcon({
     </div>
   );
 }
-function Row({ htmlFor, label, error, children, className = "" }) {
+function InputNumber({
+  text,
+  disabled,
+  defValue,
+  placeholder,
+  register = {},
+  id,
+  hasError,
+}) {
+  const isRtl = document.documentElement.dir === "rtl";
+
+  return (
+    <div className="relative">
+      <input
+        className={`${BASE_CL_INPUT} ${hasError ? "focus:shadow-input-error border-red-600" : "focus:border-primary focus:shadow-input"} ps-4.5! pe-15`}
+        type="number"
+        disabled={disabled}
+        id={id}
+        defaultValue={defValue}
+        placeholder={placeholder}
+        {...register}
+      />
+      <span
+        className={`text-text-muted absolute top-1/2 -translate-1/2 ${isRtl ? "end-8" : "end-0"}`}
+      >
+        {text}
+      </span>
+    </div>
+  );
+}
+
+function Row({
+  htmlFor,
+  label,
+  error,
+  children,
+  className = "",
+  forLogin = false,
+}) {
   return (
     <div className={`flex w-full flex-col gap-y-2 ${className}`}>
-      <label className="font-semibold" htmlFor={htmlFor}>
+      <label
+        className={`${forLogin ? "font-semibold" : "text-sm font-semibold"}`}
+        htmlFor={htmlFor}
+      >
         {label}
       </label>
       {children}
@@ -138,38 +157,54 @@ function Row({ htmlFor, label, error, children, className = "" }) {
     </div>
   );
 }
-function TextArea({ id, register, disabled }) {
+function TextArea({ id, register, disabled, hasError }) {
   return (
     <textarea
-      className="focus:ring-primary/30 h-7 w-35 rounded-lg border border-gray-500/50 p-1 outline-none focus:ring sm:w-55 md:h-8.5 md:w-70"
+      className={`${BASE_CL_INPUT} ${hasError ? "focus:shadow-input-error border-red-600" : "focus:border-primary focus:shadow-input"}`}
       id={id}
       disabled={disabled}
       {...register}
     ></textarea>
   );
 }
-function InputImg({ id, register = {}, disabled }) {
+
+function Split({ children }) {
+  return <div className="flex gap-x-3">{children}</div>;
+}
+function Header({ children, icon }) {
   return (
-    <input
-      className="file:bg-primary file:hover:bg-primary/85 w-35 file:cursor-pointer file:rounded-md file:p-1.5 file:text-white file:transition-colors sm:w-55"
-      type="file"
-      id={id}
-      disabled={disabled}
-      accept="image/*"
-      {...register}
-    />
+    <div className="mb-4 flex items-center gap-x-4 border-b border-gray-400/30 px-5 pb-5">
+      {icon && (
+        <span className="from-indigo to-blue rounded-2xl bg-linear-to-br p-3 font-bold text-white">
+          {icon}
+        </span>
+      )}
+      {children}
+    </div>
   );
 }
-function Title({ children }) {
-  return <h3 className="mb-4 border-none text-xl md:text-2xl">{children}</h3>;
+function Main({ children }) {
+  return <div className="flex flex-col gap-y-4 px-9 py-3">{children}</div>;
 }
-Form.InputText = InputText;
+function Footer({ children }) {
+  return (
+    <div className="bg-card-2 flex justify-end gap-x-3 border-t border-gray-400/30 px-5 py-8">
+      {children}
+    </div>
+  );
+}
+
+Form.Split = Split;
+Form.Header = Header;
+Form.Main = Main;
+Form.Footer = Footer;
+// Form.InputText = InputText;
 Form.Row = Row;
 Form.CheckboxInp = CheckboxInp;
 Form.TextArea = TextArea;
 Form.InputTextWithIcon = InputTextWithIcon;
 Form.InputPassWithIcon = InputPassWithIcon;
-Form.InputImg = InputImg;
-Form.Title = Title;
+Form.InputNumber = InputNumber;
+// Form.InputImg = InputImg;
 
 export default Form;

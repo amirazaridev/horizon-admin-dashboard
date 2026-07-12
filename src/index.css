@@ -12,7 +12,7 @@
    ============================================================ */
 @theme {
   /* ---- legacy tokens (still referenced by existing components) ---- */
-  --color-secondary: var(--color-gray-50);
+  /* --color-secondary: var(--color-gray-50);
   --color-nav-hover: #75826e;
   --color-pri-text: var(--color-gray-700);
   --color-textnav-hover: var(--color-gray-50);
@@ -21,7 +21,7 @@
   --color-secondary-icon: var(--color-pri-text);
   --color-spinner: #75826e;
   --color-pnl-y: var(--color-yellow-300);
-  --color-pnl-g: var(--color-green-300);
+  --color-pnl-g: var(--color-green-300); */
 
   --color-tag-blue-100: #e0f2fe;
   --color-tag-blue-700: #0369a1;
@@ -95,7 +95,7 @@
   :root {
     .light-mode,
     & {
-      --color-secondary: var(--color-gray-50);
+      /* --color-secondary: var(--color-gray-50);
       --color-nav-hover: #75826e;
       --color-pri-text: var(--color-gray-700);
       --color-textnav-hover: var(--color-gray-50);
@@ -104,7 +104,7 @@
       --color-secondary-icon: var(--color-pri-text);
       --color-spinner: #75826e;
       --color-pnl-y: var(--color-yellow-300);
-      --color-pnl-g: var(--color-green-300);
+      --color-pnl-g: var(--color-green-300); */
 
       --color-bg: #f6f7fb;
       --color-bg-grad-1: rgba(63, 39, 199, 0.06);
@@ -135,7 +135,7 @@
 
     /* ---- DARK ---- */
     .dark-mode {
-      --color-secondary: var(--color-gray-900);
+      /* --color-secondary: var(--color-gray-900);
       --color-nav-hover: #160f3d;
       --color-pri-text: var(--color-white);
       --color-textnav-hover: var(--color-gray-50);
@@ -144,7 +144,7 @@
       --color-secondary-icon: var(--color-gray-600);
       --color-spinner: #5233ff;
       --color-pnl-y: var(--color-yellow-600);
-      --color-pnl-g: var(--color-green-600);
+      --color-pnl-g: var(--color-green-600); */
 
       --color-bg: #0b0b16;
       --color-bg-grad-1: rgba(63, 39, 199, 0.1);
@@ -185,11 +185,14 @@
   }
 
   ::-webkit-scrollbar {
-    width: 8px;
+    width: 3px;
   }
 
   ::-webkit-scrollbar-thumb {
     background: var(--color-scrollbar);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-corner{
     border-radius: 999px;
   }
 
@@ -285,6 +288,8 @@
   .dark-mode .glass-header {
     background: var(--color-bg);
   }
+
+  
 
   /* ---- dropdown menu animation ---- */
   @keyframes menu-fade-slide {

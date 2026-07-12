@@ -8,7 +8,7 @@ function ThemeToggle() {
       onClick={handleDarkMode}
       type="button"
       title={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
-      className="border-border bg-surface text-text-muted hover:border-border-strong hover:text-color-text grid size-10.5 shrink-0 cursor-pointer place-items-center rounded-xl border transition-all duration-200"
+      className="border-border bg-surface text-text-muted hover:border-border-strong hover:text-text grid size-10.5 shrink-0 cursor-pointer place-items-center rounded-xl border transition-all duration-200"
     >
       {isDarkMode ? (
         /* Sun — click to go light */

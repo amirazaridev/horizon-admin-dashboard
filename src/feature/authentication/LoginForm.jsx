@@ -94,6 +94,7 @@ function LForm({ t }) {
       </div>
       {/* Inputs */}
       <Form.Row
+        forLogin={true}
         label={t("auth.emailLabel")}
         error={errors.email?.message}
         htmlFor="email"
@@ -116,6 +117,7 @@ function LForm({ t }) {
         />
       </Form.Row>
       <Form.Row
+        forLogin={true}
         label={t("auth.password")}
         error={errors.password?.message}
         htmlFor="password"

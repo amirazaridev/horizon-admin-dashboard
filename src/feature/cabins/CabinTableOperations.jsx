@@ -5,7 +5,7 @@ import SortBy from "../../ui/SortBy";
 function CabinTableOperations() {
   const { t } = useTranslation();
   return (
-    <div className="flex flex-col gap-2 md:flex-row md:gap-x-3 lg:gap-x-7">
+    <div className="flex flex-col gap-2 md:justify-between md:flex-row md:gap-x-3 lg:gap-x-7">
       <Filter
         filterField="discount"
         options={[

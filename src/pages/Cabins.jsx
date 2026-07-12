@@ -12,11 +12,11 @@ function Cabins() {
   return (
     <Container>
       <TitleContainer>
-        <Heading as="h2">{t("cabins.title")}</Heading>
-        <CabinTableOperations />
-        <div className="h-1/2">
+        <div className="flex justify-between">
+          <Heading as="h2">{t("cabins.title")}</Heading>
           <AddCabin />
         </div>
+        <CabinTableOperations />
       </TitleContainer>
       <CabinTable />
     </Container>
